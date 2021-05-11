@@ -1,19 +1,31 @@
-from dataclasses import dataclass
+import json
 from pathlib import Path
 from typing import Union
+from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
 class Code:
-    text: str
+    path: Path
     category: str
     language: str = "Python"
 
     @classmethod
-    def load_from_path(cls, path: Union[Path, str], category, language="python"):
-        path = Path(path)
+    def load_from_json(cls, json_path: Union[Path, str]):
 
-        with open(path, "r") as fl:
-            text = fl.read()
+        def to_cls(instance: dict) -> cls:
+            return cls(
+                Path(instance.get("path")),
+                instance.get("category"),
+                instance.get("language")
+            )
 
-        return cls(text, category, language)
+        with open(json_path, "r") as fl:
+            metadata = json.load(fl)
+
+        return list(map(to_cls, metadata))
+
+    @property
+    def content(self) -> str:
+        with self.path.open() as fl:
+            return fl.read()
