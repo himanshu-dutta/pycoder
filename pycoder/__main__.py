@@ -9,6 +9,7 @@ app = typer.Typer()
 #   data commands
 ###################
 
+
 @app.command()
 def download_github_repositories(save_path: str):
     download.download_github_repositories(save_path)

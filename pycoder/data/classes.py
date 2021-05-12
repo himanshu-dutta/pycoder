@@ -12,12 +12,11 @@ class Code:
 
     @classmethod
     def load_from_json(cls, json_path: Union[Path, str]):
-
         def to_cls(instance: dict) -> cls:
             return cls(
                 Path(instance.get("path")),
                 instance.get("category"),
-                instance.get("language")
+                instance.get("language"),
             )
 
         with open(json_path, "r") as fl:

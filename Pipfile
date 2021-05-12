@@ -10,13 +10,15 @@ pytorch-lightning = "*"
 pandas = "*"
 "github.py" = "*"
 PyGithub = "*"
-pygithub = "*"
-autopep8 = "*"
 typer = "*"
 python-dotenv = "*"
 
 [dev-packages]
 pytest = "*"
+black = "==21.5b1"
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true

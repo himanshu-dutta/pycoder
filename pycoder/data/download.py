@@ -22,7 +22,7 @@ def repo_to_dict(repository: Repository, keyword: str) -> dict:
             "name": repository.name,
             "topics": repository.get_topics(),
             "readme_url": repository.get_readme().download_url,
-            "language": repository.language
+            "language": repository.language,
         }
     except:
         return {
@@ -31,25 +31,27 @@ def repo_to_dict(repository: Repository, keyword: str) -> dict:
             "owner": repository.owner.login,
             "name": repository.name,
             "topics": repository.get_topics(),
-            "language": repository.language
+            "language": repository.language,
         }
 
 
-def collect_repository(g: Github, keyword: str, language: str = "python", num_instances: int = 100) -> List[dict]:
+def collect_repository(
+    g: Github, keyword: str, language: str = "python", num_instances: int = 100
+) -> List[dict]:
     end_time = time.time()
     start_time = end_time - 86400  # a day ago
 
     repositories = []
 
     while num_instances > 0:
-        print(
-            f"Collecting {formatter(keyword.capitalize(), color='g', bold=True)}...")
+        print(f"Collecting {formatter(keyword.capitalize(), color='g', bold=True)}...")
 
-        start_time_str = datetime.utcfromtimestamp(
-            start_time).strftime("%Y-%m-%d")
+        start_time_str = datetime.utcfromtimestamp(start_time).strftime("%Y-%m-%d")
         end_time_str = datetime.utcfromtimestamp(end_time).strftime("%Y-%m-%d")
 
-        query = f"{keyword} language:{language} created:{start_time_str}..{end_time_str}"
+        query = (
+            f"{keyword} language:{language} created:{start_time_str}..{end_time_str}"
+        )
 
         results = g.search_repositories(query)
 

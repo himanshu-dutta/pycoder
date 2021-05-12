@@ -50,7 +50,9 @@ def walk_clean(root_dir: Union[Path, str], keep_extensions: List = ["py"]):
         except:
             continue
 
-    print(f"Total {formatter((total_files-removed_files), color='g', bold=True)}/{formatter(total_files, color='g', bold=True)} belong to {keep_extensions} extensions.")
+    print(
+        f"Total {formatter((total_files-removed_files), color='g', bold=True)}/{formatter(total_files, color='g', bold=True)} belong to {keep_extensions} extensions."
+    )
 
 
 def index_files(root_dir: Union[Path, str], extensions: List[str] = ["py"]) -> None:
@@ -60,15 +62,21 @@ def index_files(root_dir: Union[Path, str], extensions: List[str] = ["py"]) -> N
     for root, _, files in dir_walk:
         for file in files:
             if os.path.splitext(file)[1][1:] in extensions:
-                files_to_index.append({
-                    "name": file,
-                    "path": str(Path(root) / file),
-                    "category": Path(root_dir).name
-                })
+                files_to_index.append(
+                    {
+                        "name": file,
+                        "path": str(Path(root) / file),
+                        "category": Path(root_dir).name,
+                    }
+                )
             dir_walk.update()
 
-    print(formatter(
-        f"Indexed files for {formatter(Path(root_dir).name, color='g', bold=True)} ", tick=True))
+    print(
+        formatter(
+            f"Indexed files for {formatter(Path(root_dir).name, color='g', bold=True)} ",
+            tick=True,
+        )
+    )
 
     return files_to_index
 
@@ -86,5 +94,9 @@ def index_files_from_root(root_dir: Union[Path, str], save_path: Union[Path, str
     with open(save_path, "w") as fl:
         json.dump(files_to_index, fl)
 
-    print(formatter(
-        f"Saved the file successfully to {formatter(save_path, color='g', bold=True)}", tick=True))
+    print(
+        formatter(
+            f"Saved the file successfully to {formatter(save_path, color='g', bold=True)}",
+            tick=True,
+        )
+    )

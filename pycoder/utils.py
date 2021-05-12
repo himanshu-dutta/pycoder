@@ -1,7 +1,14 @@
 from pycoder.constants import BOLD, GREEN, RED, CROSS, END, TICK
 
 
-def formatter(st: str, color: str = None, bold: bool = False, tick: bool = False, cross: bool = False, at_end: bool = True) -> str:
+def formatter(
+    st: str,
+    color: str = None,
+    bold: bool = False,
+    tick: bool = False,
+    cross: bool = False,
+    at_end: bool = True,
+) -> str:
     st = str(st)
     if color:
         color = GREEN if color.lower() == "g" else RED
