@@ -1,4 +1,5 @@
 import os
+import re
 import json
 import shutil
 from tqdm import tqdm
@@ -100,3 +101,31 @@ def index_files_from_root(root_dir: Union[Path, str], save_path: Union[Path, str
             tick=True,
         )
     )
+
+
+def remove_commments(
+    code: str,
+) -> str:
+
+    single_line_pattern = r"#(.*?)\n"
+    multi_line_pattern = r'"""(.*?)"""'
+
+    match = re.search(single_line_pattern, code)
+    while match != None:
+        start, end = match.span()
+        end -= 1
+
+        code = code[:start:] + code[end::]
+
+        match = re.search(single_line_pattern, code, re.M)
+
+    match = re.search(multi_line_pattern, code, re.M)
+    while match != None:
+        start, end = match.span()
+        end -= 1
+
+        code = code[:start:] + code[end::]
+
+        match = re.search(multi_line_pattern, code, re.M)
+
+    return code
