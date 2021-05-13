@@ -25,18 +25,11 @@ def repo_to_dict(repository: Repository, keyword: str) -> dict:
             "language": repository.language,
         }
     except:
-        return {
-            "keyword": keyword,
-            "url": repository.clone_url,
-            "owner": repository.owner.login,
-            "name": repository.name,
-            "topics": repository.get_topics(),
-            "language": repository.language,
-        }
+        return None
 
 
 def collect_repository(
-    g: Github, keyword: str, language: str = "python", num_instances: int = 100
+    g: Github, keyword: str, language: str = "python", num_instances: int = 200
 ) -> List[dict]:
     end_time = time.time()
     start_time = end_time - 86400  # a day ago
@@ -48,6 +41,7 @@ def collect_repository(
 
         start_time_str = datetime.utcfromtimestamp(start_time).strftime("%Y-%m-%d")
         end_time_str = datetime.utcfromtimestamp(end_time).strftime("%Y-%m-%d")
+        not_added = 0
 
         query = (
             f"{keyword} language:{language} created:{start_time_str}..{end_time_str}"
@@ -56,11 +50,16 @@ def collect_repository(
         results = g.search_repositories(query)
 
         for repository in tqdm(results, total=results.totalCount):
-            repositories.append(repo_to_dict(repository, keyword))
+            repository_json = repo_to_dict(repository, keyword)
+            if repository_json:
+                repositories.append(repository_json)
+            else:
+                not_added += 1
 
         start_time -= 86400
         end_time -= 86400
         num_instances -= results.totalCount
+        num_instances += not_added
 
     return repositories
 

@@ -11,6 +11,7 @@ pandas = "*"
 PyGithub = "*"
 typer = "*"
 python-dotenv = "*"
+pygithub = "*"
 
 [dev-packages]
 pytest = "*"
