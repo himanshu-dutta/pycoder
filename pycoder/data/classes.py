@@ -1,13 +1,15 @@
 import json
 from pathlib import Path
-from typing import Union
-from dataclasses import dataclass
+from typing import List, Union
+from dataclasses import dataclass, field
 
 
 @dataclass(frozen=True)
 class Code:
     path: Path
     category: str
+    readme_path: Path
+    topics: List[str] = field(default_factory=list)
     language: str = "Python"
 
     @classmethod
@@ -16,6 +18,8 @@ class Code:
             return cls(
                 Path(instance.get("path")),
                 instance.get("category"),
+                Path(instance.get("readme_path")),
+                instance.get("topics"),
                 instance.get("language"),
             )
 

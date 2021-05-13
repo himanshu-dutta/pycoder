@@ -1,6 +1,9 @@
+from typing import List
+
 import typer
 
-from .data import download, preprocess
+import pycoder.config as cfg
+from pycoder.data import download, preprocess
 
 app = typer.Typer()
 
@@ -11,23 +14,81 @@ app = typer.Typer()
 
 
 @app.command()
-def download_github_repositories(save_path: str):
-    download.download_github_repositories(save_path)
+def download_github_repositories(
+    save_path: str = cfg.REPO_JSON_PATH,
+    github_accesss_token: str = cfg.GITHUB_ACCESS_TOKEN,
+    keywords: List[str] = cfg.KEYWORDS,
+):
+    download.download_github_repositories(save_path, github_accesss_token, keywords)
 
 
 @app.command()
-def clone_repositories(json_path: str):
-    download.clone_repositories(json_path)
+def clone_repositories(
+    json_path: str = cfg.REPO_JSON_PATH, save_path: str = cfg.REPO_DATA_PATH
+):
+    download.clone_repositories(json_path, save_path)
 
 
 @app.command()
-def clean_repositories(root_dir: str):
+def index_repositories(
+    json_path: str = cfg.REPO_JSON_PATH, save_path: str = cfg.REPO_INDEX_JSON_PATH
+):
+    preprocess.index_repositories(json_path, save_path)
+
+
+@app.command()
+def clean_repositories(root_dir: str = cfg.REPO_DATA_PATH):
     preprocess.walk_clean(root_dir)
 
 
 @app.command()
-def index_files(root_dir: str, save_path: str):
-    preprocess.index_files_from_root(root_dir, save_path)
+def index_files(
+    root_dir: str = cfg.REPO_DATA_PATH,
+    save_path: str = cfg.FILE_INDEX_JSON_PATH,
+    readme_save_path: str = cfg.README_DATA_PATH,
+    repository_index: str = cfg.REPO_INDEX_JSON_PATH,
+):
+    preprocess.index_files_from_root(
+        root_dir, save_path, readme_save_path, repository_index
+    )
+
+
+@app.command()
+def get_data(
+    repository_json_path: str = cfg.REPO_JSON_PATH,
+    github_accesss_token: str = cfg.GITHUB_ACCESS_TOKEN,
+    search_keywords: List[str] = cfg.KEYWORDS,
+    repository_data_path: str = cfg.REPO_DATA_PATH,
+    repository_index_json_path: str = cfg.REPO_INDEX_JSON_PATH,
+    file_index_json_path: str = cfg.FILE_INDEX_JSON_PATH,
+    readme_save_path: str = cfg.README_DATA_PATH,
+):
+    # download github repository data to a json file
+    download.download_github_repositories(
+        repository_json_path,
+        github_accesss_token,
+        search_keywords,
+    )
+
+    # clone the repository to a local folder
+    download.clone_repositories(
+        repository_json_path,
+        repository_data_path,
+    )
+
+    # index the repositories to a json file
+    preprocess.index_repositories(repository_json_path, repository_index_json_path)
+
+    # clean the repositories for any unwanted file
+    preprocess.walk_clean(repository_data_path)
+
+    # index the required files and download the readme for them
+    preprocess.index_files_from_root(
+        repository_data_path,
+        file_index_json_path,
+        readme_save_path,
+        repository_index_json_path,
+    )
 
 
 if __name__ == "__main__":

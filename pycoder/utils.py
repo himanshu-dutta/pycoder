@@ -1,4 +1,4 @@
-from pycoder.constants import BOLD, GREEN, RED, CROSS, END, TICK
+from pycoder.config import BOLD, GREEN, RED, CROSS, END, TICK
 
 
 def formatter(

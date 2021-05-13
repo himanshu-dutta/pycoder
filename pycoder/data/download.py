@@ -29,7 +29,10 @@ def repo_to_dict(repository: Repository, keyword: str) -> dict:
 
 
 def collect_repository(
-    g: Github, keyword: str, language: str = "python", num_instances: int = 200
+    g: Github,
+    keyword: str,
+    language: str = "python",
+    num_instances: int = 400,
 ) -> List[dict]:
     end_time = time.time()
     start_time = end_time - 86400  # a day ago
@@ -64,12 +67,15 @@ def collect_repository(
     return repositories
 
 
-def download_github_repositories(save_path: Union[Path, str] = cfg.DATA_PATH) -> None:
+def download_github_repositories(
+    save_path: Union[Path, str],
+    github_access_token: str,
+    keywords: List[str],
+) -> None:
     save_path = Path(save_path)
     save_path.parent.mkdir(parents=True, exist_ok=True)
 
-    g = Github(cfg.GITHUB_ACCESS_TOKEN)
-    keywords = cfg.KEYWORDS
+    g = Github(github_access_token)
 
     repositories = []
     for keyword in keywords:
@@ -80,7 +86,7 @@ def download_github_repositories(save_path: Union[Path, str] = cfg.DATA_PATH) ->
         json.dump(repositories, fl)
 
 
-def clone_repository(repository_dict: dict, save_path: str = cfg.REPO_PATH):
+def clone_repository(repository_dict: dict, save_path: Union[Path, str]) -> None:
     save_path = Path(save_path) / repository_dict["keyword"]
     save_path.mkdir(exist_ok=True, parents=True)
 
@@ -93,11 +99,13 @@ def clone_repository(repository_dict: dict, save_path: str = cfg.REPO_PATH):
     os.system(cmd)
 
 
-def clone_repositories(json_path):
+def clone_repositories(
+    json_path: Union[Path, str], save_path: Union[Path, str]
+) -> None:
     with open(json_path, "r") as fl:
         repositories = json.load(fl)
 
     repositories = tqdm(repositories)
     for repository in repositories:
         repositories.set_description(f"Cloning {repository['name']}")
-        clone_repository(repository)
+        clone_repository(repository, save_path)
