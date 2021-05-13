@@ -1,16 +1,16 @@
-import os
-import time
-import json
-from typing import List, Union
-from tqdm import tqdm
-from pathlib import Path
-from datetime import datetime
-
-from github import Github
-from github.Repository import Repository
-
+from pycoder.imports import (
+    system,
+    time,
+    json,
+    List,
+    Union,
+    tqdm,
+    Path,
+    datetime,
+    Github,
+    Repository,
+)
 from pycoder.utils import *
-import pycoder.config as cfg
 
 
 def repo_to_dict(repository: Repository, keyword: str) -> dict:
@@ -34,7 +34,7 @@ def collect_repository(
     language: str = "python",
     num_instances: int = 400,
 ) -> List[dict]:
-    end_time = time.time()
+    end_time = time()
     start_time = end_time - 86400  # a day ago
 
     repositories = []
@@ -96,7 +96,7 @@ def clone_repository(repository_dict: dict, save_path: Union[Path, str]) -> None
 
     cmd = f"git clone {url} {save_path /(owner+'___'+name)}"
 
-    os.system(cmd)
+    system(cmd)
 
 
 def clone_repositories(

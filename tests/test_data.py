@@ -3,7 +3,7 @@ import pycoder.config as cfg
 
 
 def test_class_code():
-    code = Code.load_from_json(cfg.INDEXED_FILE_PATH)
+    code = Code.load_from_json(cfg.FILE_INDEX_JSON_PATH)
     assert hasattr(
         code, "__len__"
     ), "load_from_json method must return a list of Code instances."

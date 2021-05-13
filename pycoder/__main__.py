@@ -1,11 +1,8 @@
-from typing import List
-
-import typer
-
 import pycoder.config as cfg
+from pycoder.imports import List, Typer
 from pycoder.data import download, preprocess
 
-app = typer.Typer()
+app = Typer()
 
 
 ###################
@@ -47,9 +44,14 @@ def index_files(
     save_path: str = cfg.FILE_INDEX_JSON_PATH,
     readme_save_path: str = cfg.README_DATA_PATH,
     repository_index: str = cfg.REPO_INDEX_JSON_PATH,
+    keywords: List[str] = cfg.KEYWORDS,
 ):
     preprocess.index_files_from_root(
-        root_dir, save_path, readme_save_path, repository_index
+        root_dir,
+        save_path,
+        readme_save_path,
+        repository_index,
+        keywords,
     )
 
 
@@ -88,6 +90,7 @@ def get_data(
         file_index_json_path,
         readme_save_path,
         repository_index_json_path,
+        search_keywords,
     )
 
 

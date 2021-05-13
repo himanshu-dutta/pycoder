@@ -1,7 +1,4 @@
-import json
-from pathlib import Path
-from typing import List, Union
-from dataclasses import dataclass, field
+from pycoder.imports import json, Path, List, Union, dataclass, field
 
 
 @dataclass(frozen=True)

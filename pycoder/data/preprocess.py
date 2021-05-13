@@ -1,16 +1,19 @@
-import os
-import re
-import json
-import shutil
-import requests
-from tqdm import tqdm
-from io import StringIO
-from pathlib import Path
-from markdown import Markdown
-from typing import Dict, List, Union
-
-
-import pycoder.config as cfg
+from pycoder.imports import (
+    walk,
+    path,
+    listdir,
+    re,
+    json,
+    rmtree,
+    requests,
+    tqdm,
+    StringIO,
+    Path,
+    Markdown,
+    Dict,
+    List,
+    Union,
+)
 from pycoder.utils import formatter
 
 
@@ -31,7 +34,7 @@ def index_repositories(
 
 
 def walk_clean(root_dir: Union[Path, str], keep_extensions: List[str] = ["py"]) -> None:
-    dir_walk = tqdm(os.walk(root_dir, topdown=False))
+    dir_walk = tqdm(walk(root_dir, topdown=False))
 
     empty_dirs = set()
     total_files = removed_files = 0
@@ -42,7 +45,7 @@ def walk_clean(root_dir: Union[Path, str], keep_extensions: List[str] = ["py"]) 
         is_file = False
 
         for file in files:
-            if os.path.splitext(file)[1][1:] not in keep_extensions:
+            if path.splitext(file)[1][1:] not in keep_extensions:
                 (Path(root) / file).unlink()
                 removed_files += 1
 
@@ -55,7 +58,7 @@ def walk_clean(root_dir: Union[Path, str], keep_extensions: List[str] = ["py"]) 
             is_subdir = False
 
             for dir in dirs:
-                if len(os.listdir(Path(root) / dir)) > 0:
+                if len(listdir(Path(root) / dir)) > 0:
                     is_subdir = True
 
             if not is_subdir:
@@ -66,7 +69,7 @@ def walk_clean(root_dir: Union[Path, str], keep_extensions: List[str] = ["py"]) 
     print("Removing empty directories...")
     for empty_dir in tqdm(empty_dirs):
         try:
-            shutil.rmtree(empty_dir)
+            rmtree(empty_dir)
 
         except:
             continue
@@ -82,7 +85,7 @@ def index_files(
     readme_save_dir: Union[Path, str],
     extensions: List[str] = ["py"],
 ) -> None:
-    dir_walk = tqdm(os.walk(Path(root_dir), topdown=False))
+    dir_walk = tqdm(walk(Path(root_dir), topdown=False))
     files_to_index = []
 
     for root, _, files in dir_walk:
@@ -92,7 +95,7 @@ def index_files(
                 repository = indexed_repositories[part]
 
         for file in files:
-            if os.path.splitext(file)[1][1:] in extensions:
+            if path.splitext(file)[1][1:] in extensions:
                 files_to_index.append(
                     download_readme(
                         {
@@ -124,6 +127,7 @@ def index_files_from_root(
     save_path: Union[Path, str],
     readme_save_dir: Union[Path, str],
     repository_index_path: Union[Path, str],
+    keywords: List[str],
 ) -> None:
 
     indexed_files = []
@@ -131,7 +135,7 @@ def index_files_from_root(
     with Path(repository_index_path).open() as fl:
         indexed_repositories = json.load(fl)
 
-    for keyword in cfg.KEYWORDS:
+    for keyword in keywords:
         indexed_files += index_files(
             Path(root_dir) / keyword, indexed_repositories, readme_save_dir
         )

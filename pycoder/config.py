@@ -1,14 +1,11 @@
-import os
-from pathlib import Path
-from dotenv import load_dotenv
+from pycoder.imports import environ, Path, load_dotenv
 
 load_dotenv()
-
 
 #################
 # secrets
 ##################
-GITHUB_ACCESS_TOKEN = os.environ["GITHUB_ACCESS_TOKEN"]
+GITHUB_ACCESS_TOKEN = environ["GITHUB_ACCESS_TOKEN"]
 
 
 ####################
