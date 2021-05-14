@@ -1,6 +1,6 @@
 import pycoder.config as cfg
 from pycoder.imports import List, Typer
-from pycoder.data import download, preprocess
+from pycoder.data import download, processing
 
 app = Typer()
 
@@ -30,7 +30,7 @@ def clone_repositories(
 def index_repositories(
     json_path: str = cfg.REPO_JSON_PATH, save_path: str = cfg.REPO_INDEX_JSON_PATH
 ):
-    preprocess.index_repositories(json_path, save_path)
+    processing.index_repositories(json_path, save_path)
 
 
 @app.command()
@@ -38,7 +38,7 @@ def clean_repositories(
     root_dir: str = cfg.REPO_DATA_PATH,
     must_remove_phrases: List[str] = cfg.GITIGNORES,
 ):
-    preprocess.walk_clean(root_dir, must_remove_phrases)
+    processing.walk_clean(root_dir, must_remove_phrases)
 
 
 @app.command()
@@ -49,7 +49,7 @@ def index_files(
     repository_index: str = cfg.REPO_INDEX_JSON_PATH,
     keywords: List[str] = cfg.KEYWORDS,
 ):
-    preprocess.index_files_from_root(
+    processing.index_files_from_root(
         root_dir,
         save_path,
         readme_save_path,
@@ -83,13 +83,13 @@ def get_data(
     )
 
     # index the repositories to a json file
-    preprocess.index_repositories(repository_json_path, repository_index_json_path)
+    processing.index_repositories(repository_json_path, repository_index_json_path)
 
     # clean the repositories for any unwanted file
-    preprocess.walk_clean(repository_data_path, must_remove_phrases)
+    processing.walk_clean(repository_data_path, must_remove_phrases)
 
     # index the required files and download the readme for them
-    preprocess.index_files_from_root(
+    processing.index_files_from_root(
         repository_data_path,
         file_index_json_path,
         readme_save_path,
