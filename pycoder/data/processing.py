@@ -1,3 +1,4 @@
+from random import choice
 from pycoder.imports import (
     walk,
     path,
@@ -13,6 +14,7 @@ from pycoder.imports import (
     Dict,
     List,
     Union,
+    choices,
 )
 from pycoder.utils import formatter
 
@@ -162,34 +164,6 @@ def index_files_from_root(
     )
 
 
-def remove_commments(
-    code: str,
-) -> str:
-
-    single_line_pattern = r"#(.*?)\n"
-    multi_line_pattern = r'"""(.*?)"""'
-
-    match = re.search(single_line_pattern, code)
-    while match != None:
-        start, end = match.span()
-        end -= 1
-
-        code = code[:start:] + code[end::]
-
-        match = re.search(single_line_pattern, code, re.M)
-
-    match = re.search(multi_line_pattern, code, re.M)
-    while match != None:
-        start, end = match.span()
-        end -= 1
-
-        code = code[:start:] + code[end::]
-
-        match = re.search(multi_line_pattern, code, re.M)
-
-    return code
-
-
 class unmark:
     """
     converts markdown string to a text string
@@ -236,3 +210,41 @@ def download_readme(file_json, save_dir: Union[Path, str]) -> dict:
 
     file_json["readme_path"] = str(readme_path)
     return file_json
+
+
+def remove_commments(
+    code: str,
+) -> str:
+
+    single_line_pattern = r"#(.*?)\n"
+    multi_line_pattern = r'"""(.*?)"""'
+
+    match = re.search(single_line_pattern, code)
+    while match != None:
+        start, end = match.span()
+        end -= 1
+
+        code = code[:start:] + code[end::]
+
+        match = re.search(single_line_pattern, code, re.M)
+
+    match = re.search(multi_line_pattern, code, re.M)
+    while match != None:
+        start, end = match.span()
+        end -= 1
+
+        code = code[:start:] + code[end::]
+
+        match = re.search(multi_line_pattern, code, re.M)
+
+    return code
+
+
+def sentence_tokenize_and_select_random(text: str, num_sentences: int = 2) -> str:
+
+    sentences = list(filter(lambda x: len(x) > 0, text.split(".")))
+
+    if num_sentences < len(sentences):
+        return ".".join(sentences)
+
+    return ".".join(choices(sentences, k=num_sentences))
