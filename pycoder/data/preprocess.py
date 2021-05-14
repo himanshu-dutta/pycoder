@@ -33,7 +33,11 @@ def index_repositories(
         json.dump(repository_dict, fl)
 
 
-def walk_clean(root_dir: Union[Path, str], keep_extensions: List[str] = ["py"]) -> None:
+def walk_clean(
+    root_dir: Union[Path, str],
+    must_remove_phrases: List[str],
+    keep_extensions: List[str] = ["py"],
+) -> None:
     dir_walk = tqdm(walk(root_dir, topdown=False))
 
     empty_dirs = set()
@@ -45,7 +49,9 @@ def walk_clean(root_dir: Union[Path, str], keep_extensions: List[str] = ["py"]) 
         is_file = False
 
         for file in files:
-            if path.splitext(file)[1][1:] not in keep_extensions:
+            if path.splitext(file)[1][1:] not in keep_extensions or any(
+                [phrase in str(file) for phrase in must_remove_phrases]
+            ):
                 (Path(root) / file).unlink()
                 removed_files += 1
 
@@ -61,7 +67,9 @@ def walk_clean(root_dir: Union[Path, str], keep_extensions: List[str] = ["py"]) 
                 if len(listdir(Path(root) / dir)) > 0:
                     is_subdir = True
 
-            if not is_subdir:
+            if not is_subdir or any(
+                [phrase in str(root) for phrase in must_remove_phrases]
+            ):
                 empty_dirs.add(Path(root).absolute())
 
         dir_walk.update()

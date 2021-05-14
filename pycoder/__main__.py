@@ -34,8 +34,11 @@ def index_repositories(
 
 
 @app.command()
-def clean_repositories(root_dir: str = cfg.REPO_DATA_PATH):
-    preprocess.walk_clean(root_dir)
+def clean_repositories(
+    root_dir: str = cfg.REPO_DATA_PATH,
+    must_remove_phrases: List[str] = cfg.GITIGNORES,
+):
+    preprocess.walk_clean(root_dir, must_remove_phrases)
 
 
 @app.command()
@@ -60,6 +63,7 @@ def get_data(
     repository_json_path: str = cfg.REPO_JSON_PATH,
     github_accesss_token: str = cfg.GITHUB_ACCESS_TOKEN,
     search_keywords: List[str] = cfg.KEYWORDS,
+    must_remove_phrases: List[str] = cfg.GITIGNORES,
     repository_data_path: str = cfg.REPO_DATA_PATH,
     repository_index_json_path: str = cfg.REPO_INDEX_JSON_PATH,
     file_index_json_path: str = cfg.FILE_INDEX_JSON_PATH,
@@ -82,7 +86,7 @@ def get_data(
     preprocess.index_repositories(repository_json_path, repository_index_json_path)
 
     # clean the repositories for any unwanted file
-    preprocess.walk_clean(repository_data_path)
+    preprocess.walk_clean(repository_data_path, must_remove_phrases)
 
     # index the required files and download the readme for them
     preprocess.index_files_from_root(

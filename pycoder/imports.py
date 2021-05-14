@@ -1,5 +1,6 @@
 import re
 import json
+import codecs
 from time import time
 from io import StringIO
 from pathlib import Path

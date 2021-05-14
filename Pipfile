@@ -12,6 +12,7 @@ PyGithub = "*"
 typer = "*"
 python-dotenv = "*"
 pygithub = "*"
+transformers = "*"
 
 [dev-packages]
 pytest = "*"
