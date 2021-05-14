@@ -1,5 +1,5 @@
-from pycoder.imports import Dataset, List, Dict
 from pycoder.data.classes import Code
+from pycoder.imports import Dataset, List, Dict
 from pycoder.data.processing import sentence_tokenize_and_select_random
 
 
