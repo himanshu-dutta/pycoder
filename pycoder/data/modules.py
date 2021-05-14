@@ -1,4 +1,4 @@
-from pycoder.imports import Dataset, List
+from pycoder.imports import Dataset, List, Dict
 from pycoder.data.classes import Code
 from pycoder.data.processing import sentence_tokenize_and_select_random
 
@@ -11,7 +11,7 @@ class CodeDataset(Dataset):
         special_tokens: dict,
         max_length: int,
         num_description_sentences: int,
-    ):
+    ) -> None:
         self.codes = codes
         self.tokenizer = tokenizer
         self.special_tokens = special_tokens
@@ -42,10 +42,10 @@ class CodeDataset(Dataset):
             + self.special_tokens["eos_token"]
         )
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.codes)
 
-    def __getitem__(self, index):
+    def __getitem__(self, index) -> Dict[str, "torch.tensor"]:
         formatted_code = self.get_formatted_code(index)
 
         tokenized = self.tokenizer(
