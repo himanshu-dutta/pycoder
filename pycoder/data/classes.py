@@ -1,5 +1,4 @@
-from pycoder.imports import json, Path, List, Union, dataclass, field, tqdm, codecs
-from pycoder.utils import formatter
+from pycoder.imports import json, Path, List, Union, dataclass, field, codecs
 
 
 @dataclass
