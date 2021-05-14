@@ -142,5 +142,6 @@ cython_debug/
 #####################
 
 data/repositories/
+data/readmes/
 data/*.json
 !data/repositories.json
