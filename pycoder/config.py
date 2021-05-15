@@ -16,13 +16,13 @@ WANDB_API_KEY = environ["WANDB_API_KEY"]
 
 # model config
 GPT_CONFIGS = {
-    "S": {"MODEL_TYPE": "gpt2", "MAX_LENGTH": 768},
-    "M": {"MODEL_TYPE": "gpt2-medium", "MAX_LENGTH": 1024},
-    "L": {"MODEL_TYPE": "gpt2-large", "MAX_LENGTH": 1280},
-    "XL": {"MODEL_TYPE": "gpt2-xl", "MAX_LENGTH": 1600},
+    "S": {"MODEL_NAME": "gpt2", "MAX_LENGTH": 768},
+    "M": {"MODEL_NAME": "gpt2-medium", "MAX_LENGTH": 1024},
+    "L": {"MODEL_NAME": "gpt2-large", "MAX_LENGTH": 1280},
+    "XL": {"MODEL_NAME": "gpt2-xl", "MAX_LENGTH": 1600},
 }
 
-MODEL_TYPE = GPT_CONFIGS["S"]["MODEL_TYPE"]
+MODEL_NAME = GPT_CONFIGS["S"]["MODEL_NAME"]
 MAX_LENGTH = GPT_CONFIGS["S"]["MAX_LENGTH"]
 NUM_DESCRIPTION_SENTENCES = 2
 
@@ -49,8 +49,8 @@ REPO_DATA_PATH = DATA_DIR / "repositories"
 README_DATA_PATH = DATA_DIR / "readmes"
 
 MODEL_DIR = ARTIFACT_PATH / "models"
-MODEL_PATH = MODEL_DIR / MODEL_TYPE / "model"
-TOKENIZER_PATH = MODEL_DIR / MODEL_TYPE / "tokenizer"
+MODEL_PATH = MODEL_DIR / MODEL_NAME / "model"
+TOKENIZER_PATH = MODEL_DIR / MODEL_NAME / "tokenizer"
 
 
 REPO_JSON_PATH = DATA_DIR / "repositories.json"
@@ -68,7 +68,7 @@ EPS = 1e-8
 WARMUP_STEPS = 1e2
 APEX_OPT_LEVEL = "01"
 FP16 = True
-VAL_SIZE = 0.2
+VAL_PCT = 0.2
 RUN_NAME = f"RUN: {__version__}"
 #############
 # constants

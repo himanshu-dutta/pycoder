@@ -20,7 +20,7 @@ def test_class_code():
 
 def test_module_code_dataset():
     codes = Code.load_from_json(cfg.FILE_INDEX_JSON_PATH)
-    tokenizer = get_tokenier(cfg.MODEL_TYPE, cfg.SPECIAL_TOKENS)
+    tokenizer = get_tokenier(cfg.MODEL_NAME, cfg.SPECIAL_TOKENS)
     ds = CodeDataset(
         codes=codes,
         tokenizer=tokenizer,

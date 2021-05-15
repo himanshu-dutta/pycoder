@@ -15,15 +15,15 @@ from pycoder.model.trainer import get_trainer
 
 
 def test_method_get_tokenizer():
-    tokenizer = get_tokenier(cfg.MODEL_TYPE, cfg.SPECIAL_TOKENS)
+    tokenizer = get_tokenier(cfg.MODEL_NAME, cfg.SPECIAL_TOKENS)
     assert hasattr(
         tokenizer, "__len__"
     ), "The tokenizer object must have a __len__ property."
 
 
 def test_method_get_model():
-    tokenizer = get_tokenier(cfg.MODEL_TYPE, cfg.SPECIAL_TOKENS)
-    model = get_model(cfg.MODEL_TYPE, tokenizer, cfg.SPECIAL_TOKENS)
+    tokenizer = get_tokenier(cfg.MODEL_NAME, cfg.SPECIAL_TOKENS)
+    model = get_model(cfg.MODEL_NAME, tokenizer, cfg.SPECIAL_TOKENS)
     assert hasattr(
         tokenizer, "__len__"
     ), "The tokenizer object must have a __len__ property."
@@ -33,15 +33,15 @@ def test_method_get_model():
 
 
 def test_method_load_save_model():
-    tokenizer = get_tokenier(cfg.MODEL_TYPE, cfg.SPECIAL_TOKENS)
-    model = get_model(cfg.MODEL_TYPE, tokenizer, cfg.SPECIAL_TOKENS)
+    tokenizer = get_tokenier(cfg.MODEL_NAME, cfg.SPECIAL_TOKENS)
+    model = get_model(cfg.MODEL_NAME, tokenizer, cfg.SPECIAL_TOKENS)
 
     save_transformers(
-        cfg.MODEL_TYPE, cfg.MODEL_PATH, cfg.TOKENIZER_PATH, model, tokenizer
+        cfg.MODEL_NAME, cfg.MODEL_PATH, cfg.TOKENIZER_PATH, model, tokenizer
     )
 
     model, tokenizer = load_transformers(
-        cfg.MODEL_TYPE, cfg.MODEL_PATH, cfg.TOKENIZER_PATH
+        cfg.MODEL_NAME, cfg.MODEL_PATH, cfg.TOKENIZER_PATH
     )
 
     assert hasattr(
@@ -54,8 +54,8 @@ def test_method_load_save_model():
 
 def test_method_get_trainer():
     codes = Code.load_from_json(cfg.FILE_INDEX_JSON_PATH)
-    tokenizer = get_tokenier(cfg.MODEL_TYPE, cfg.SPECIAL_TOKENS)
-    model = get_model(cfg.MODEL_TYPE, tokenizer, cfg.SPECIAL_TOKENS)
+    tokenizer = get_tokenier(cfg.MODEL_NAME, cfg.SPECIAL_TOKENS)
+    model = get_model(cfg.MODEL_NAME, tokenizer, cfg.SPECIAL_TOKENS)
     ds = CodeDataset(
         codes=codes,
         tokenizer=tokenizer,
