@@ -4,5 +4,5 @@
 
 ```
 Input format:
-<|SOS|>TOPICS<|SEP|>DESCRIPTION<|SEP|>CODE<|EOS|>
+<|TOP|>TOPICS<|DES|>DESCRIPTION<|CODE|>CODE<|EOS|>
 ```
