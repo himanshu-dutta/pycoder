@@ -1,4 +1,5 @@
 from pycoder.config import BOLD, GREEN, RED, CROSS, END, TICK
+from pycoder.imports import Path
 
 
 def formatter(
@@ -24,3 +25,18 @@ def formatter(
         st = st + " " + CROSS if at_end else CROSS + " " + st
 
     return color + bold + st + END
+
+
+def update_version():
+    version = input("Enter version number: ")
+    assert (
+        len(version.split(".")) == 3
+    ), """version represents RELEASE_VERSION.DEV_VERSION.MODEL_VERSION"""
+
+    version_file = Path(__file__).parent / "version.py"
+
+    with version_file.open("w") as fl:
+        fl.write(
+            f"""\"\"\"version represents RELEASE_VERSION.DEV_VERSION.MODEL_VERSION\"\"\"\n__version__ = "{version}\"
+            """
+        )

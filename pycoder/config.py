@@ -1,4 +1,5 @@
 from pycoder.imports import environ, Path, load_dotenv
+from pycoder.version import __version__
 
 load_dotenv()
 
@@ -58,7 +59,17 @@ FILE_INDEX_JSON_PATH = DATA_DIR / "indexed_files.json"
 
 KEYWORDS = ["tensorflow", "pytorch", "django", "flask", "algorithms", "fastapi"]
 
-
+# training aguments
+EPOCHS = 10
+TRAIN_BATCHSIZE = 4
+BATCH_UPDATE = 16
+LR = 5e-4
+EPS = 1e-8
+WARMUP_STEPS = 1e2
+APEX_OPT_LEVEL = "01"
+FP16 = True
+VAL_SIZE = 0.2
+RUN_NAME = f"RUN: {__version__}"
 #############
 # constants
 #############

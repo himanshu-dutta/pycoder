@@ -146,3 +146,5 @@ artifacts/data/repositories/
 artifacts/data/readmes/
 artifacts/data/*.json
 !artifacts/data/repositories.json
+wandb/
+runs/
