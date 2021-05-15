@@ -8,8 +8,8 @@ from shutil import rmtree
 from random import choices
 from markdown import Markdown
 from datetime import datetime
-from typing import List, Union, Dict
 from dataclasses import dataclass, field
+from typing import List, Union, Dict, Tuple
 from os import environ, system, path, walk, listdir
 
 import requests

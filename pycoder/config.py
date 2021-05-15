@@ -12,17 +12,19 @@ WANDB_API_KEY = environ["WANDB_API_KEY"]
 ####################
 # configuration
 ####################
-PACKAGE_DIR = Path(__file__).parent.absolute()
-ARTIFACT_PATH = PACKAGE_DIR.parent / "artifacts"
-DATA_PATH = ARTIFACT_PATH / "data"
-REPO_DATA_PATH = DATA_PATH / "repositories"
-README_DATA_PATH = DATA_PATH / "readmes"
 
-REPO_JSON_PATH = DATA_PATH / "repositories.json"
-REPO_INDEX_JSON_PATH = DATA_PATH / "indexed_repos.json"
-FILE_INDEX_JSON_PATH = DATA_PATH / "indexed_files.json"
+# model config
+GPT_CONFIGS = {
+    "S": {"MODEL_TYPE": "gpt2", "MAX_LENGTH": 768},
+    "M": {"MODEL_TYPE": "gpt2-medium", "MAX_LENGTH": 1024},
+    "L": {"MODEL_TYPE": "gpt2-large", "MAX_LENGTH": 1280},
+    "XL": {"MODEL_TYPE": "gpt2-xl", "MAX_LENGTH": 1600},
+}
 
-KEYWORDS = ["tensorflow", "pytorch", "django", "flask", "algorithms", "fastapi"]
+MODEL_TYPE = GPT_CONFIGS["S"]["MODEL_TYPE"]
+MAX_LENGTH = GPT_CONFIGS["S"]["MAX_LENGTH"]
+NUM_DESCRIPTION_SENTENCES = 2
+
 SPECIAL_TOKENS = {
     "bos_token": "<|BOS|>",
     "eos_token": "<|EOS|>",
@@ -30,11 +32,31 @@ SPECIAL_TOKENS = {
     "pad_token": "<|PAD|>",
     "sep_token": "<|SEP|>",
 }
+CONTROL_TOKENS = {
+    "topics_token": "<|TOP|>",
+    "description_token": "<|DESC|>",
+    "code_token": "<|CODE|>",
+    "eos_token": SPECIAL_TOKENS["eos_token"],
+}
 
-# model config
-MODEL_TYPE = "gpt2"  # options {gpt2, gpt2-medium, gpt2-large, gpt2-xl}
-MAX_LENGTH = 1024
-NUM_DESCRIPTION_SENTENCES = 2
+# paths and directories
+PACKAGE_DIR = Path(__file__).parent.absolute()
+ARTIFACT_PATH = PACKAGE_DIR.parent / "artifacts"
+
+DATA_DIR = ARTIFACT_PATH / "data"
+REPO_DATA_PATH = DATA_DIR / "repositories"
+README_DATA_PATH = DATA_DIR / "readmes"
+
+MODEL_DIR = ARTIFACT_PATH / "models"
+MODEL_PATH = MODEL_DIR / MODEL_TYPE / "model"
+TOKENIZER_PATH = MODEL_DIR / MODEL_TYPE / "tokenizer"
+
+
+REPO_JSON_PATH = DATA_DIR / "repositories.json"
+REPO_INDEX_JSON_PATH = DATA_DIR / "indexed_repos.json"
+FILE_INDEX_JSON_PATH = DATA_DIR / "indexed_files.json"
+
+KEYWORDS = ["tensorflow", "pytorch", "django", "flask", "algorithms", "fastapi"]
 
 
 #############

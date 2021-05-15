@@ -8,22 +8,20 @@ class CodeDataset(Dataset):
         self,
         codes: List[Code],
         tokenizer: "transformer.PreTrainedTokenizer",
-        special_tokens: dict,
+        control_tokens: dict,
         max_length: int,
         num_description_sentences: int,
     ) -> None:
         self.codes = codes
         self.tokenizer = tokenizer
-        self.special_tokens = special_tokens
+        self.control_tokens = control_tokens
         self.max_length = max_length
         self.num_description_sentences = num_description_sentences
-
-        self.tokenizer.add_special_tokens(self.special_tokens)
 
     def get_formatted_code(self, index: int) -> str:
         """
         returns a string with the format:
-        <|SOS|>TOPICS<|SEP|>DESCRIPTION<|SEP|>CODE<|EOS|>
+        <|TOP|>TOPICS<|DES|>DESCRIPTION<|CODE|>CODE<|EOS|>
         """
         code = self.codes[index]
         content = code.content
@@ -33,19 +31,19 @@ class CodeDataset(Dataset):
         topics = ",".join(code.topics) if len(code.topics) else ""
 
         return (
-            self.special_tokens["bos_token"]
+            self.control_tokens["topics_token"]
             + topics
-            + self.special_tokens["sep_token"]
+            + self.control_tokens["description_token"]
             + description
-            + self.special_tokens["sep_token"]
+            + self.control_tokens["code_token"]
             + content
-            + self.special_tokens["eos_token"]
+            + self.control_tokens["eos_token"]
         )
 
     def __len__(self) -> int:
         return len(self.codes)
 
-    def __getitem__(self, index) -> Dict[str, "torch.tensor"]:
+    def __getitem__(self, index: int) -> Dict[str, "torch.tensor"]:
         formatted_code = self.get_formatted_code(index)
 
         tokenized = self.tokenizer(
@@ -61,3 +59,7 @@ class CodeDataset(Dataset):
             "input_ids": tokenized["input_ids"],
             "attention_mask": tokenized["attention_mask"],
         }
+
+    def get_string(self, index: int) -> str:
+        formatted_code = self.get_formatted_code(index)
+        return formatted_code

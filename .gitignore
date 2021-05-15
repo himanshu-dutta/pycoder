@@ -141,6 +141,7 @@ cython_debug/
 #####################
 #####################
 
+artifacts/models
 artifacts/data/repositories/
 artifacts/data/readmes/
 artifacts/data/*.json
