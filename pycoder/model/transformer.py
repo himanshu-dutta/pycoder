@@ -1,4 +1,3 @@
-from typing import Tuple
 from pycoder.imports import (
     json,
     AutoConfig,
@@ -6,6 +5,7 @@ from pycoder.imports import (
     AutoTokenizer,
     Union,
     Path,
+    Tuple,
 )
 from pycoder.utils import *
 
