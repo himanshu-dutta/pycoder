@@ -29,6 +29,7 @@ class CodeDataset(Dataset):
             code.readme, self.num_description_sentences
         )
         topics = ",".join(code.topics) if len(code.topics) else ""
+        topics = code.category + "," + topics
 
         return (
             self.control_tokens["topics_token"]

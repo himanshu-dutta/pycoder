@@ -12,6 +12,7 @@ from pycoder.model.transformer import (
     load_transformers,
 )
 from pycoder.model.trainer import get_trainer
+from pycoder.model.inference import CodeInference
 
 
 def test_method_get_tokenizer():
@@ -81,3 +82,18 @@ def test_method_get_trainer():
     assert hasattr(
         trainer.tokenizer, "save_pretrained"
     ), "Trainer.tokenizer object must have a save_pretrained method."
+
+
+def test_class_CodeInference():
+
+    inferer = CodeInference(
+        cfg.MODEL_NAME,
+        cfg.MODEL_PATH,
+        cfg.TOKENIZER_PATH,
+        cfg.CONTROL_TOKENS,
+        cfg.MAX_LENGTH,
+    )
+
+    results = inferer("tensorflow,ml", "a tensorflow training loop")
+
+    assert isinstance(results, list), "inference of CodeInference call must be a list"
