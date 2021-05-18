@@ -1,6 +1,7 @@
 import pycoder.config as cfg
 from pycoder.imports import List, Typer
 from pycoder.data import download, processing
+from pycoder.model import training
 
 app = Typer()
 
@@ -96,6 +97,16 @@ def get_data(
         repository_index_json_path,
         search_keywords,
     )
+
+
+###################
+#   model commands
+###################
+
+
+@app.command()
+def run_training():
+    training.run_training(cfg)
 
 
 if __name__ == "__main__":
