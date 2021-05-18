@@ -40,26 +40,7 @@ CONTROL_TOKENS = {
     "eos_token": SPECIAL_TOKENS["eos_token"],
 }
 
-# paths and directories
-PACKAGE_DIR = Path(__file__).parent.absolute()
-ARTIFACT_PATH = PACKAGE_DIR.parent / "artifacts"
-
-DATA_DIR = ARTIFACT_PATH / "data"
-REPO_DATA_PATH = DATA_DIR / "repositories"
-README_DATA_PATH = DATA_DIR / "readmes"
-
-MODEL_DIR = ARTIFACT_PATH / "models"
-MODEL_PATH = MODEL_DIR / MODEL_NAME / "model"
-TOKENIZER_PATH = MODEL_DIR / MODEL_NAME / "tokenizer"
-
-
-REPO_JSON_PATH = DATA_DIR / "repositories.json"
-REPO_INDEX_JSON_PATH = DATA_DIR / "indexed_repos.json"
-FILE_INDEX_JSON_PATH = DATA_DIR / "indexed_files.json"
-
-KEYWORDS = ["tensorflow", "pytorch", "django", "flask", "algorithms", "fastapi"]
-
-# training aguments
+# training parameters
 EPOCHS = 10
 TRAIN_BATCHSIZE = 4
 BATCH_UPDATE = 16
@@ -69,7 +50,27 @@ WARMUP_STEPS = 1e2
 APEX_OPT_LEVEL = "01"
 FP16 = True
 VAL_PCT = 0.2
-RUN_NAME = f"RUN: {__version__}"
+RUN_NAME = f"RUN:{__version__}"
+
+# paths and directories
+PACKAGE_DIR = Path(__file__).parent.absolute()
+ARTIFACT_PATH = PACKAGE_DIR.parent / "artifacts"
+
+DATA_DIR = ARTIFACT_PATH / "data"
+REPO_DATA_PATH = DATA_DIR / "repositories"
+README_DATA_PATH = DATA_DIR / "readmes"
+
+MODEL_DIR = ARTIFACT_PATH / "models"
+MODEL_PATH = MODEL_DIR / RUN_NAME / MODEL_NAME / "model"
+TOKENIZER_PATH = MODEL_DIR / RUN_NAME / MODEL_NAME / "tokenizer"
+
+
+REPO_JSON_PATH = DATA_DIR / "repositories.json"
+REPO_INDEX_JSON_PATH = DATA_DIR / "indexed_repos.json"
+FILE_INDEX_JSON_PATH = DATA_DIR / "indexed_files.json"
+
+KEYWORDS = ["tensorflow", "pytorch", "django", "flask", "algorithms", "fastapi"]
+
 #############
 # constants
 #############

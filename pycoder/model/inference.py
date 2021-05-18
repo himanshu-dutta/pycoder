@@ -12,6 +12,7 @@ class CodeInference:
         max_length: int,
     ):
         model, tokenizer = load_transformers(model_name, model_path, tokenizer_path)
+        model.config.task_specific_params["text-generation"]["max_length"] = max_length
 
         self.coder = pipeline(
             "text-generation",
@@ -22,7 +23,9 @@ class CodeInference:
 
         self.control_tokens = control_tokens
 
-    def __call__(self, topics: Union[List[str], str], description: str):
+    def __call__(
+        self, topics: Union[List[str], str], description: str, code_prefix: str = ""
+    ):
         """
         sends in input:
         <|TOP|>TOPICS<|DES|>DESCRIPTION<|CODE|>
@@ -40,6 +43,7 @@ class CodeInference:
             + self.control_tokens["description_token"]
             + description
             + self.control_tokens["code_token"]
+            + code_prefix
         )
 
         out = self.coder(inp)
