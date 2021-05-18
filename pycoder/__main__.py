@@ -1,7 +1,8 @@
 import pycoder.config as cfg
+from pycoder.model import training
 from pycoder.imports import List, Typer
 from pycoder.data import download, processing
-from pycoder.model import training
+import pycoder.utils as utils
 
 app = Typer()
 
@@ -107,6 +108,16 @@ def get_data(
 @app.command()
 def run_training():
     training.run_training(cfg)
+
+
+###################
+#   bump commands
+###################
+
+
+@app.command()
+def update_version():
+    utils.update_version()
 
 
 if __name__ == "__main__":
