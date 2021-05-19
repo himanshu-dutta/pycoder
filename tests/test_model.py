@@ -3,6 +3,7 @@ from torch.utils.data import random_split
 import pycoder.config as cfg
 
 from pycoder.data.classes import Code
+from pycoder.imports import Path, rmtree
 from pycoder.data.modules import CodeDataset
 
 from pycoder.model.transformer import (
@@ -37,6 +38,9 @@ def test_method_load_save_model():
     tokenizer = get_tokenier(cfg.MODEL_NAME, cfg.SPECIAL_TOKENS)
     model = get_model(cfg.MODEL_NAME, tokenizer, cfg.SPECIAL_TOKENS)
 
+    model_path = Path(str(cfg.MODEL_PATH) + "__test")
+    tokenizer_path = Path(str(cfg.TOKENIZER_PATH) + "__test")
+
     save_transformers(
         cfg.MODEL_NAME, cfg.MODEL_PATH, cfg.TOKENIZER_PATH, model, tokenizer
     )
@@ -44,6 +48,9 @@ def test_method_load_save_model():
     model, tokenizer = load_transformers(
         cfg.MODEL_NAME, cfg.MODEL_PATH, cfg.TOKENIZER_PATH
     )
+
+    rmtree(model_path)
+    rmtree(tokenizer_path)
 
     assert hasattr(
         tokenizer, "__len__"

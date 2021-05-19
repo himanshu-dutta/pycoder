@@ -9,7 +9,7 @@ def get_trainer(
     cfg,
 ) -> "transformer.Trainer":
     training_args = TrainingArguments(
-        output_dir=cfg.MODEL_PATH,
+        output_dir=cfg.CHECKPOINT_PATH,
         num_train_epochs=cfg.EPOCHS,
         per_device_train_batch_size=cfg.TRAIN_BATCHSIZE,
         per_device_eval_batch_size=cfg.TRAIN_BATCHSIZE,
