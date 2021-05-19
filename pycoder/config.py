@@ -41,7 +41,7 @@ CONTROL_TOKENS = {
 }
 
 # training parameters
-EPOCHS = 4
+EPOCHS = 5
 TRAIN_BATCHSIZE = 1
 BATCH_UPDATE = 16
 LR = 5e-4
