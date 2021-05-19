@@ -4,10 +4,10 @@ from pycoder.data.modules import CodeDataset
 from pycoder.model.trainer import get_trainer
 from pycoder.model.transformer import get_tokenier, get_model, save_transformers
 
-from pycoder.imports import random_split
+from pycoder.imports import random_split, Path, Union
 
 
-def run_training(cfg):
+def run_training(cfg, checkpoint_path: Union[Path, str] = None):
     codes = Code.load_from_json(cfg.FILE_INDEX_JSON_PATH)
     print(
         f"loaded {len(codes)} code instances from",
@@ -38,8 +38,12 @@ def run_training(cfg):
 
     trainer = get_trainer(model, tokenizer, train_ds, val_ds, cfg)
 
-    print(formatter("initializing training", "g", True))
-    trainer.train()
+    if checkpoint_path:
+        print(formatter("resuming training", "g", True))
+        trainer.train(checkpoint_path)
+    else:
+        print(formatter("initializing training", "g", True))
+        trainer.train()
 
     save_transformers(
         cfg.MODEL_NAME,

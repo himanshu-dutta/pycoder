@@ -106,8 +106,8 @@ def get_data(
 
 
 @app.command()
-def run_training():
-    training.run_training(cfg)
+def run_training(checkpoint_dir: str = None):
+    training.run_training(cfg, checkpoint_dir)
 
 
 ###################
