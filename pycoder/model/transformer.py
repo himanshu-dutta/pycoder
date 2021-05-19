@@ -66,7 +66,7 @@ def save_transformers(
     tokenizer_path.mkdir(parents=True, exist_ok=True)
 
     with (tokenizer_path / "config.json").open("w") as fl:
-        json.dump({"model_type": model_name}, fl)
+        json.dump({"model_type": "gpt2"}, fl)
 
     model.save_pretrained(model_path)
     tokenizer.save_pretrained(tokenizer_path)
