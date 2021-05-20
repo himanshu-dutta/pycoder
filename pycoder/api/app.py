@@ -1,6 +1,6 @@
 import pycoder.config as cfg
 from pycoder.api.main import query
-from pycoder.imports import Union, List, FastAPI, create_task
+from pycoder.imports import FastAPI, create_task
 
 app = FastAPI()
 
