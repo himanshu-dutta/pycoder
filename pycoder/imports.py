@@ -14,8 +14,12 @@ from typing import List, Union, Dict, Tuple, Optional
 from os import environ, system, path, walk, listdir
 
 import requests
-from github import Github
-from github.Repository import Repository
+
+try:
+    from github import Github
+    from github.Repository import Repository
+except:
+    pass
 
 from tqdm import tqdm
 from typer import Typer, Option, echo
