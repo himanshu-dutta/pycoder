@@ -54,7 +54,7 @@ RUN_NAME = f"RUN:{(__version__.split('.'))[-1]}"
 
 # paths and directories
 PACKAGE_DIR = Path(__file__).parent.absolute()
-ARTIFACT_PATH = PACKAGE_DIR.parent / "artifacts"
+ARTIFACT_PATH = PACKAGE_DIR / "artifacts"
 
 DATA_DIR = ARTIFACT_PATH / "data"
 REPO_DATA_PATH = DATA_DIR / "repositories"
