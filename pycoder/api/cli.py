@@ -30,7 +30,7 @@ def main(
     prefix: Optional[str] = Option(
         "", "--prefix", "-p", help="[optional] starter code to be filled in."
     ),
-    max_length: Optional[str] = Option(
+    max_length: Optional[int] = Option(
         200, "--max-length", "-ml", help="max length of code to get."
     ),
 ) -> str:
