@@ -41,13 +41,9 @@ def test_method_load_save_model():
     model_path = Path(str(cfg.MODEL_PATH) + "__test")
     tokenizer_path = Path(str(cfg.TOKENIZER_PATH) + "__test")
 
-    save_transformers(
-        cfg.MODEL_NAME, cfg.MODEL_PATH, cfg.TOKENIZER_PATH, model, tokenizer
-    )
+    save_transformers(cfg.MODEL_NAME, model_path, tokenizer_path, model, tokenizer)
 
-    model, tokenizer = load_transformers(
-        cfg.MODEL_NAME, cfg.MODEL_PATH, cfg.TOKENIZER_PATH
-    )
+    model, tokenizer = load_transformers(cfg.MODEL_NAME, model_path, tokenizer_path)
 
     rmtree(model_path)
     rmtree(tokenizer_path)
