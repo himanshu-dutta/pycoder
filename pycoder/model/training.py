@@ -46,7 +46,6 @@ def run_training(cfg, checkpoint_path: Union[Path, str] = None):
         trainer.train()
 
     save_transformers(
-        cfg.MODEL_NAME,
         cfg.MODEL_PATH,
         cfg.TOKENIZER_PATH,
         trainer.model,

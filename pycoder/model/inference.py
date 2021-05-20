@@ -5,13 +5,12 @@ from pycoder.model.transformer import load_transformers
 class CodeInference:
     def __init__(
         self,
-        model_name: str,
         model_path: Union[Path, str],
         tokenizer_path: Union[Path, str],
         control_tokens: dict,
         max_length: int,
     ):
-        model, tokenizer = load_transformers(model_name, model_path, tokenizer_path)
+        model, tokenizer = load_transformers(model_path, tokenizer_path)
         model.config.task_specific_params["text-generation"]["max_length"] = max_length
 
         self.coder = pipeline(

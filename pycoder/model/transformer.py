@@ -54,7 +54,6 @@ def get_model(
 
 
 def save_transformers(
-    model_name: str,
     model_path: Union[Path, str],
     tokenizer_path: Union[Path, str],
     model: "nn.Module",
@@ -82,25 +81,18 @@ def save_transformers(
 
 
 def load_transformers(
-    model_name: str,
     model_path: Union[Path, str] = None,
     tokenizer_path: Union[Path, str] = None,
-    special_tokens: dict = None,
 ) -> Tuple["nn.Module", "transformer.PreTrainedTokenizer"]:
 
     model_path, tokenizer_path = Path(model_path), Path(tokenizer_path)
 
     assert (
         model_path.exists() and tokenizer_path.exists()
-    ), "Either model and tokenizer path must exist."
+    ), "Both model and tokenizer path must exist."
 
-    if model_path and tokenizer_path:
-        tokenizer = get_tokenier(tokenizer_path)
-        model = get_model(model_path, tokenizer)
-
-    else:
-        tokenizer = get_tokenier(model_name, special_tokens)
-        model = get_model(model_name, tokenizer, special_tokens)
+    tokenizer = get_tokenier(tokenizer_path)
+    model = get_model(model_path, tokenizer)
 
     print(
         "Loaded the model from ",

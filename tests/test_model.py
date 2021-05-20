@@ -41,9 +41,9 @@ def test_method_load_save_model():
     model_path = Path(str(cfg.MODEL_PATH) + "__test")
     tokenizer_path = Path(str(cfg.TOKENIZER_PATH) + "__test")
 
-    save_transformers(cfg.MODEL_NAME, model_path, tokenizer_path, model, tokenizer)
+    save_transformers(model_path, tokenizer_path, model, tokenizer)
 
-    model, tokenizer = load_transformers(cfg.MODEL_NAME, model_path, tokenizer_path)
+    model, tokenizer = load_transformers(model_path, tokenizer_path)
 
     rmtree(model_path)
     rmtree(tokenizer_path)
@@ -90,7 +90,6 @@ def test_method_get_trainer():
 def test_class_CodeInference():
 
     inferer = CodeInference(
-        cfg.MODEL_NAME,
         cfg.MODEL_PATH,
         cfg.TOKENIZER_PATH,
         cfg.CONTROL_TOKENS,
