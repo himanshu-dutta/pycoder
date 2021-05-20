@@ -95,5 +95,5 @@ venv/
 .pytest_cache
 .vscode
 tests
-pycoder/artifacts/checkpoints
-pycoder/artifacts/data
+artifacts/checkpoints
+artifacts/data

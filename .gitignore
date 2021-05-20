@@ -140,7 +140,7 @@ cython_debug/
 
 #####################
 #####################
-pycoder/artifacts
-!pycoder/artifacts/data/repositories.json
+artifacts/
+!artifacts/data/repositories.json
 wandb/
 runs/
