@@ -5,6 +5,7 @@ click==7.1.2
 deprecated==1.2.12
 fastapi==0.65.1
 filelock==3.0.12
+h11==0.12.0
 huggingface-hub==0.0.8
 idna==2.10
 joblib==1.0.1
@@ -31,8 +32,9 @@ tokenizers==0.10.2
 torch==1.8.1
 torchvision==0.9.1
 tqdm==4.60.0
-transformers==4.6.0
+transformers==4.6.1
 typer==0.3.2
 typing-extensions==3.10.0.0
 urllib3==1.26.4
+uvicorn==0.13.4
 wrapt==1.12.1
