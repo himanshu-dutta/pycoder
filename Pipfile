@@ -5,22 +5,20 @@ name = "pypi"
 
 [packages]
 torch = "*"
-torchvision = "*"
-pandas = "*"
-PyGithub = "*"
 typer = "*"
 python-dotenv = "*"
 transformers = "*"
 Markdown = "*"
 fastapi = "*"
 uvicorn = "*"
-pygments = "*"
+Pygments = "*"
 click-spinner = "*"
 
 [dev-packages]
 pytest = "*"
 black = "==21.5b1"
 wandb = "*"
+pygithub = "*"
 
 [requires]
 python_version = "3.8"
