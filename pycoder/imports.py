@@ -10,7 +10,7 @@ from markdown import Markdown
 from datetime import datetime
 from functools import lru_cache
 from dataclasses import dataclass, field
-from typing import List, Union, Dict, Tuple
+from typing import List, Union, Dict, Tuple, Optional
 from os import environ, system, path, walk, listdir
 
 import requests
@@ -18,7 +18,7 @@ from github import Github
 from github.Repository import Repository
 
 from tqdm import tqdm
-from typer import Typer
+from typer import Typer, Option
 from dotenv import load_dotenv
 
 
@@ -38,3 +38,7 @@ from transformers import (
 
 from fastapi import FastAPI
 from asyncio import create_task
+
+from pygments import highlight
+from pygments.lexers import PythonLexer
+from pygments.formatters import TerminalFormatter

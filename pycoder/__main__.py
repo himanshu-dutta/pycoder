@@ -110,9 +110,9 @@ def run_training(checkpoint_dir: str = None):
     training.run_training(cfg, checkpoint_dir)
 
 
-###################
-#   bump commands
-###################
+#####################
+#   utility commands
+#####################
 
 
 @app.command()
