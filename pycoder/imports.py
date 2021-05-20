@@ -18,7 +18,7 @@ from github import Github
 from github.Repository import Repository
 
 from tqdm import tqdm
-from typer import Typer, Option
+from typer import Typer, Option, echo
 from dotenv import load_dotenv
 
 

@@ -1,6 +1,7 @@
 import pycoder.config as cfg
 from pycoder.api.main import query
 from pycoder.imports import (
+    echo,
     List,
     Typer,
     Option,
@@ -29,6 +30,9 @@ def main(
     prefix: Optional[str] = Option(
         "", "--prefix", "-p", help="[optional] starter code to be filled in."
     ),
+    max_length: Optional[str] = Option(
+        200, "--max-length", "-ml", help="max length of code to get."
+    ),
 ) -> str:
     """
     CLI command to get Python code from set of topics[multiple] and description.
@@ -41,9 +45,9 @@ def main(
         pycoder -t pytorch -t torch -d "a trainer for vision" --prefix "class Trainer:"\n
     """
     with spinner():
-        code = query(cfg, list(topic), description, prefix, False)
+        code = query(cfg, list(topic), description, prefix, False, max_length)
 
-    print(highlight(code, PythonLexer(), TerminalFormatter()))
+    echo(highlight(code, PythonLexer(), TerminalFormatter()))
 
 
 if __name__ == "__main__":

@@ -31,8 +31,14 @@ def query(
     description: str,
     code_prefix: str = "",
     verbose: bool = False,
+    max_length: int = None,
 ) -> str:
-    coder = create_inference_instance(cfg.MODEL_PATH, cfg.TOKENIZER_PATH, 200, verbose)
+    if not max_length:
+        max_length = cfg.MAX_LENGTH
+
+    coder = create_inference_instance(
+        cfg.MODEL_PATH, cfg.TOKENIZER_PATH, max_length, verbose
+    )
 
     out = coder(topics, description, code_prefix)
 
