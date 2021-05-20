@@ -6,12 +6,17 @@ app = FastAPI()
 
 
 async def load_model_call():
-    query(cfg, "python", "a sample call to load the model")
+    query(
+        cfg,
+        topics="python",
+        description="a sample call to load the model",
+        verbose=True,
+    )
 
 
 @app.get("/")
 async def query_code(topics: str, description: str, prefix: str = ""):
-    result = query(cfg, topics, description, prefix)
+    result = query(cfg, topics, description, prefix, True)
 
     return {"code": result}
 

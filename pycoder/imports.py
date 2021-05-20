@@ -38,6 +38,7 @@ from transformers import (
 
 from fastapi import FastAPI
 from asyncio import create_task
+from click_spinner import spinner
 
 from pygments import highlight
 from pygments.lexers import PythonLexer

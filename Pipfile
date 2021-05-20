@@ -15,6 +15,7 @@ Markdown = "*"
 fastapi = "*"
 uvicorn = "*"
 pygments = "*"
+click-spinner = "*"
 
 [dev-packages]
 pytest = "*"

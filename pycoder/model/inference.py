@@ -9,8 +9,9 @@ class CodeInference:
         tokenizer_path: Union[Path, str],
         control_tokens: dict,
         max_length: int,
+        verbose: bool = False,
     ):
-        model, tokenizer = load_transformers(model_path, tokenizer_path)
+        model, tokenizer = load_transformers(model_path, tokenizer_path, verbose)
         model.config.task_specific_params["text-generation"]["max_length"] = max_length
 
         self.coder = pipeline(

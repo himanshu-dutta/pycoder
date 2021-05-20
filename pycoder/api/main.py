@@ -7,6 +7,7 @@ def create_inference_instance(
     model_path: Union[Path, str],
     tokenizer_path: Union[Path, str],
     max_length: int,
+    verbose: bool,
 ) -> CodeInference:
     CONTROL_TOKENS = {
         "topics_token": "<|TOP|>",
@@ -15,7 +16,13 @@ def create_inference_instance(
         "eos_token": "<|EOS|>",
     }
 
-    return CodeInference(model_path, tokenizer_path, CONTROL_TOKENS, max_length)
+    return CodeInference(
+        model_path,
+        tokenizer_path,
+        CONTROL_TOKENS,
+        max_length,
+        verbose,
+    )
 
 
 def query(
@@ -23,8 +30,9 @@ def query(
     topics: Union[List[str], str],
     description: str,
     code_prefix: str = "",
+    verbose: bool = False,
 ) -> str:
-    coder = create_inference_instance(cfg.MODEL_PATH, cfg.TOKENIZER_PATH, 200)
+    coder = create_inference_instance(cfg.MODEL_PATH, cfg.TOKENIZER_PATH, 200, verbose)
 
     out = coder(topics, description, code_prefix)
 

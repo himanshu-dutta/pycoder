@@ -83,6 +83,7 @@ def save_transformers(
 def load_transformers(
     model_path: Union[Path, str] = None,
     tokenizer_path: Union[Path, str] = None,
+    verbose: bool = False,
 ) -> Tuple["nn.Module", "transformer.PreTrainedTokenizer"]:
 
     model_path, tokenizer_path = Path(model_path), Path(tokenizer_path)
@@ -94,13 +95,14 @@ def load_transformers(
     tokenizer = get_tokenier(tokenizer_path)
     model = get_model(model_path, tokenizer)
 
-    print(
-        "Loaded the model from ",
-        formatter(str(model_path), color="g", bold=True, tick=True),
-    )
-    print(
-        "Loaded the tokenizer from ",
-        formatter(str(tokenizer_path), color="g", bold=True, tick=True),
-    )
+    if verbose:
+        print(
+            "Loaded the model from ",
+            formatter(str(model_path), color="g", bold=True, tick=True),
+        )
+        print(
+            "Loaded the tokenizer from ",
+            formatter(str(tokenizer_path), color="g", bold=True, tick=True),
+        )
 
     return model, tokenizer
