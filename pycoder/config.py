@@ -50,7 +50,7 @@ WARMUP_STEPS = 1e2
 APEX_OPT_LEVEL = "01"
 FP16 = True
 VAL_PCT = 0.2
-RUN_NAME = f"RUN:{__version__}"
+RUN_NAME = f"RUN:{(__version__.split('.'))[-1]}"
 
 # paths and directories
 PACKAGE_DIR = Path(__file__).parent.absolute()
