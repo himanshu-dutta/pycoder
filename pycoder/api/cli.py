@@ -50,5 +50,5 @@ def main(
     echo(highlight(code, PythonLexer(), TerminalFormatter()))
 
 
-if __name__ == "__main__":
+def cli():
     app()
