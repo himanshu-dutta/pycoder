@@ -1,6 +1,8 @@
 from pycoder.api.main import query
+from pycoder.utils import formatter
 from pycoder.version import __version__
 from pycoder.imports import (
+    time,
     List,
     echo,
     Exit,
@@ -47,6 +49,12 @@ def main(
         "-c",
         help="if cuda device is to be used for inference or not. Might not work in case VRAM is <4GB.",
     ),
+    execution_time: Optional[bool] = Option(
+        False,
+        "--execution_time",
+        "-et",
+        help="get execution time of generating the code.",
+    ),
     version: Optional[bool] = Option(
         None, "--version", "-v", callback=version_callback
     ),
@@ -61,10 +69,15 @@ def main(
         pycoder --topic pytorch --topic torch --description "a trainer for vision" --prefix "class Trainer:"\n
         pycoder -t pytorch -t torch -d "a trainer for vision" --prefix "class Trainer:"\n
     """
+    st = time()
     with spinner():
         code = query(list(topic), description, prefix, max_length, cuda, False)
+    et = time()
 
     echo(highlight(code, PythonLexer(), TerminalFormatter()))
+
+    if execution_time:
+        echo(formatter(f"took {(et-st):.2f} seconds to code 😀", color="g", bold=True))
 
 
 def cli():
