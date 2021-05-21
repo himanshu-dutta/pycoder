@@ -1,4 +1,4 @@
-from pycoder.imports import environ, Path
+from pycoder.imports import getenv, Path
 from pycoder.version import __version__
 
 try:
@@ -11,8 +11,8 @@ except:
 #################
 # secrets
 ##################
-GITHUB_ACCESS_TOKEN = environ["GITHUB_ACCESS_TOKEN"]
-WANDB_API_KEY = environ["WANDB_API_KEY"]
+GITHUB_ACCESS_TOKEN = getenv("GITHUB_ACCESS_TOKEN")
+WANDB_API_KEY = getenv("WANDB_API_KEY")
 
 
 ####################

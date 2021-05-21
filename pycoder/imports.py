@@ -11,7 +11,7 @@ from datetime import datetime
 from functools import lru_cache
 from dataclasses import dataclass, field
 from typing import List, Union, Dict, Tuple, Optional
-from os import environ, system, path, walk, listdir
+from os import getenv, system, path, walk, listdir
 
 import requests
 
