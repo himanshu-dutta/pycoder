@@ -18,10 +18,20 @@ if not TOKENIZER_PATH.exists():
     if "dev" not in sys.argv:
         raise FileNotFoundError(TOKENIZER_PATH)
 
+with open("README.md") as f:
+    long_description = f.read()
+
 setup(
     name="pycoder",
     version=__version__,
     packages=find_packages(),
+    description="A package to generate Python code from given topics and description",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    author="Himanshu Dutta",
+    author_email="meet.himanshu.dutta@gmail.com",
+    url="https://github.com/himanshu-dutta/pycoder",
+    license="MIT License",
     install_requires=[
         "torch @ https://download.pytorch.org/whl/cpu/torch-1.8.1%2Bcpu-cp38-cp38-linux_x86_64.whl",
         "typer",
@@ -38,10 +48,13 @@ setup(
             "pycoder=pycoder.api.cli:cli",
         ],
     },
+    platforms=["linux", "unix"],
+    include_package_data=True,
     package_data={
         "pycoder": [
             str(MODEL_PATH.relative_to(PACKAGE_DIR) / "*"),
             str(TOKENIZER_PATH.relative_to(PACKAGE_DIR) / "*"),
         ]
     },
+    python_requires=">3.6.8",
 )
