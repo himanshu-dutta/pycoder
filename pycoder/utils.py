@@ -1,5 +1,5 @@
-from pycoder.config import BOLD, GREEN, RED, CROSS, END, TICK
 from pycoder.imports import Path
+from pycoder.config import BOLD, GREEN, RED, CROSS, END, TICK
 
 
 def formatter(

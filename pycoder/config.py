@@ -1,5 +1,5 @@
-from pycoder.imports import getenv, Path
 from pycoder.version import __version__
+from pycoder.imports import getenv, Path
 
 try:
     from pycoder.imports import load_dotenv

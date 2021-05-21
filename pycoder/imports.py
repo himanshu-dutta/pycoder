@@ -1,6 +1,11 @@
+######################
+#   python imports
+######################
+
 import re
 import json
 import codecs
+import requests
 from time import time
 from io import StringIO
 from pathlib import Path
@@ -13,18 +18,10 @@ from dataclasses import dataclass, field
 from typing import List, Union, Dict, Tuple, Optional
 from os import getenv, system, path, walk, listdir
 
-import requests
 
-try:
-    from github import Github
-    from github.Repository import Repository
-    from dotenv import load_dotenv
-except:
-    pass
-
-from tqdm import tqdm
-from typer import Typer, Option, Exit, echo
-
+######################
+#   model imports
+######################
 
 import torch
 from torch.utils.data import DataLoader, Dataset, random_split
@@ -40,6 +37,14 @@ from transformers import (
     pipeline,
 )
 
+
+######################
+#   api imports
+######################
+
+from tqdm import tqdm
+from typer import Typer, Option, Exit, echo
+
 from fastapi import FastAPI
 from asyncio import create_task
 from click_spinner import spinner
@@ -47,3 +52,15 @@ from click_spinner import spinner
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import TerminalFormatter
+
+
+######################
+#   dev imports
+######################
+
+try:
+    from github import Github
+    from github.Repository import Repository
+    from dotenv import load_dotenv
+except:
+    pass

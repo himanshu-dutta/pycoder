@@ -2,9 +2,8 @@ from pycoder.utils import *
 from pycoder.data.classes import Code
 from pycoder.data.modules import CodeDataset
 from pycoder.model.trainer import get_trainer
-from pycoder.model.transformer import get_tokenier, get_model, save_transformers
-
 from pycoder.imports import random_split, Path, Union
+from pycoder.model.transformer import get_tokenier, get_model, save_transformers
 
 
 def run_training(cfg, checkpoint_path: Union[Path, str] = None):

@@ -1,3 +1,4 @@
+from pycoder.utils import *
 from pycoder.imports import (
     json,
     AutoConfig,
@@ -7,7 +8,6 @@ from pycoder.imports import (
     Path,
     Tuple,
 )
-from pycoder.utils import *
 
 
 def get_tokenier(

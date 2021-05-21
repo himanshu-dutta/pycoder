@@ -1,4 +1,4 @@
-from random import choice
+from pycoder.utils import formatter
 from pycoder.imports import (
     walk,
     path,
@@ -16,7 +16,6 @@ from pycoder.imports import (
     Union,
     choices,
 )
-from pycoder.utils import formatter
 
 
 def index_repositories(
