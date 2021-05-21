@@ -1,16 +1,10 @@
-from pycoder.imports import (
-    system,
-    time,
-    json,
-    List,
-    Union,
-    tqdm,
-    Path,
-    datetime,
-    Github,
-    Repository,
-)
 from pycoder.utils import *
+from pycoder.imports import system, time, json, List, Union, tqdm, Path, datetime
+
+try:
+    from pycoder.imports import Github, Repository
+except:
+    pass
 
 
 def repo_to_dict(repository: Repository, keyword: str) -> dict:

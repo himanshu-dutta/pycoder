@@ -18,12 +18,12 @@ import requests
 try:
     from github import Github
     from github.Repository import Repository
+    from dotenv import load_dotenv
 except:
     pass
 
 from tqdm import tqdm
 from typer import Typer, Option, echo
-from dotenv import load_dotenv
 
 
 import torch
