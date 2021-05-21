@@ -45,6 +45,7 @@ from transformers import (
 from tqdm import tqdm
 from typer import Typer, Option, Exit, echo
 
+from uvicorn import run
 from fastapi import FastAPI
 from asyncio import create_task
 from click_spinner import spinner

@@ -13,6 +13,7 @@ from pycoder.imports import (
     highlight,
     PythonLexer,
     TerminalFormatter,
+    system,
 )
 
 app = Typer()
@@ -27,6 +28,14 @@ def version_callback(value: bool):
 ############################
 #   interface for inference
 ############################
+
+
+def endpoint_callback(port: int = 800):
+
+    from pycoder.api.app import main
+
+    main(port)
+    raise Exit()
 
 
 @app.command()
@@ -55,6 +64,9 @@ def main(
         "-et",
         help="get execution time of generating the code.",
     ),
+    endpoint: Optional[int] = Option(
+        8000, "--endpoint", "-e", callback=endpoint_callback
+    ),
     version: Optional[bool] = Option(
         None, "--version", "-v", callback=version_callback
     ),
@@ -81,4 +93,8 @@ def main(
 
 
 def cli():
+    app()
+
+
+if __name__ == "__main__":
     app()

@@ -25,7 +25,11 @@ foo@bar:❯ pycoder --version
 
 The API endpoint is deployed using FastAPI. Once all the requirements have been installed for the project, the API can be accessed with:
 ```console
-foo@bar:❯ pycoder endpoint
+foo@bar:❯ pycoder --endpoint PORT_NUMBER
+```
+Or
+```console
+foo@bar:❯ pycoder -e PORT_NUMBER
 ```
 
 

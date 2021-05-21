@@ -1,5 +1,5 @@
 from pycoder.api.main import query
-from pycoder.imports import FastAPI, create_task
+from pycoder.imports import FastAPI, create_task, run
 
 app = FastAPI()
 
@@ -25,3 +25,7 @@ async def query_code(
 async def load_model():
     create_task(load_model_call())
     return {"status": "loading model..."}
+
+
+def main(port):
+    run(app, host="127.0.0.1", port=port, log_level="info")
