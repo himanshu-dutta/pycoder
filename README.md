@@ -31,18 +31,17 @@ foo@bar:❯ pycoder endpoint
 
 ### Tech Stack
 <p align="center">
-
 <img alt="Python" src="https://img.shields.io/badge/python-%2314354C.svg?style=for-the-badge&logo=python&logoColor=white"/> <img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white" /> <img alt="Docker" src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white"/> <img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI" height=28 style="background-color:black;"> <img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" height=28 style="background-color:teal;">
 </p>
 
 ### Tested Platforms
 <p align="center">
-
 <img alt="Linux" src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"> <img alt="Windows 10" src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" />
 </p>
-<hr />
-<p align="center">
 
+<hr />
+
+<p align="center">
 <img alt="MIT License" src="https://img.shields.io/github/license/himanshu-dutta/pycoder?style=for-the-badge&logo=appveyor">
 <img src="https://img.shields.io/badge/Copyright-Himanshu_Dutta-2ea44f?style=for-the-badge&logo=appveyor" >
 </p>
