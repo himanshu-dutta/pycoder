@@ -60,7 +60,7 @@ def main(
     ),
 ) -> str:
     """
-    CLI command to get Python code from set of topics[multiple] and description.
+    CLI command to get Python 🐍 code from set of topics[multiple] and description.
     Example:\n
         pycoder --topic pytorch --description "a trainer for vision"\n
         pycoder -t pytorch -d "a trainer for vision"\n
