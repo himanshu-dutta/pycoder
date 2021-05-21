@@ -1,7 +1,12 @@
-from pycoder.imports import environ, Path, load_dotenv
+from pycoder.imports import environ, Path
 from pycoder.version import __version__
 
-load_dotenv()
+try:
+    from pycoder.imports import load_dotenv
+
+    load_dotenv()
+except:
+    pass
 
 #################
 # secrets
@@ -55,6 +60,9 @@ RUN_NAME = f"RUN:{(__version__.split('.'))[-1]}"
 # paths and directories
 PACKAGE_DIR = Path(__file__).parent.absolute()
 ARTIFACT_PATH = PACKAGE_DIR / "artifacts"
+
+ASSETS_DIR = PACKAGE_DIR / "assets"
+CONFIG_PATH = Path(__file__)
 
 DATA_DIR = ARTIFACT_PATH / "data"
 REPO_DATA_PATH = DATA_DIR / "repositories"

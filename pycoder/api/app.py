@@ -1,4 +1,3 @@
-import pycoder.config as cfg
 from pycoder.api.main import query
 from pycoder.imports import FastAPI, create_task
 
@@ -7,7 +6,6 @@ app = FastAPI()
 
 async def load_model_call():
     query(
-        cfg,
         topics="python",
         description="a sample call to load the model",
         verbose=True,
@@ -15,8 +13,10 @@ async def load_model_call():
 
 
 @app.get("/")
-async def query_code(topics: str, description: str, prefix: str = ""):
-    result = query(cfg, topics, description, prefix, True)
+async def query_code(
+    topics: str, description: str, prefix: str = "", max_length: int = 200
+):
+    result = query(topics, description, prefix, max_length, True)
 
     return {"code": result}
 

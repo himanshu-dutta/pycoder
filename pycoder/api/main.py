@@ -1,13 +1,17 @@
-from pycoder.imports import Union, Path, List, lru_cache
 from pycoder.model.inference import CodeInference
+from pycoder.imports import Union, Path, List, lru_cache, Path
+
+
+MODEL_PATH = Path(__file__).parent.parent / "assets" / "model"
+TOKENIZER_PATH = Path(__file__).parent.parent / "assets" / "tokenizer"
 
 
 @lru_cache(1)
 def create_inference_instance(
-    model_path: Union[Path, str],
-    tokenizer_path: Union[Path, str],
-    max_length: int,
-    verbose: bool,
+    model_path: Union[Path, str] = MODEL_PATH,
+    tokenizer_path: Union[Path, str] = TOKENIZER_PATH,
+    max_length: int = 200,
+    verbose: bool = False,
 ) -> CodeInference:
     CONTROL_TOKENS = {
         "topics_token": "<|TOP|>",
@@ -26,19 +30,14 @@ def create_inference_instance(
 
 
 def query(
-    cfg,
     topics: Union[List[str], str],
     description: str,
     code_prefix: str = "",
+    max_length: int = 200,
     verbose: bool = False,
-    max_length: int = None,
 ) -> str:
-    if not max_length:
-        max_length = cfg.MAX_LENGTH
 
-    coder = create_inference_instance(
-        cfg.MODEL_PATH, cfg.TOKENIZER_PATH, max_length, verbose
-    )
+    coder = create_inference_instance(max_length=max_length, verbose=verbose)
 
     out = coder(topics, description, code_prefix)
 

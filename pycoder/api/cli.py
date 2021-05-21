@@ -1,4 +1,3 @@
-import pycoder.config as cfg
 from pycoder.api.main import query
 from pycoder.imports import (
     echo,
@@ -45,7 +44,7 @@ def main(
         pycoder -t pytorch -t torch -d "a trainer for vision" --prefix "class Trainer:"\n
     """
     with spinner():
-        code = query(cfg, list(topic), description, prefix, False, max_length)
+        code = query(list(topic), description, prefix, max_length, False)
 
     echo(highlight(code, PythonLexer(), TerminalFormatter()))
 

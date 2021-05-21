@@ -1,8 +1,8 @@
 import pycoder.config as cfg
-from pycoder.model import training
-from pycoder.imports import List, Typer
-from pycoder.data import download, processing
 import pycoder.utils as utils
+from pycoder.model import training
+from pycoder.data import download, processing
+from pycoder.imports import List, Typer, system
 
 app = Typer()
 
@@ -113,6 +113,26 @@ def run_training(checkpoint_dir: str = None):
 #####################
 #   utility commands
 #####################
+
+
+@app.command()
+def dump_assets(assets_dir: str = None, cfg=cfg):
+    if assets_dir == None:
+        assert cfg.ASSETS_DIR != None, "assets_dir / cfg.ASSETS_DIR is required."
+        assets_dir = str(cfg.ASSETS_DIR)
+
+    assert (
+        cfg.MODEL_PATH != None
+        and cfg.TOKENIZER_PATH != None
+        and cfg.CONFIG_PATH != None
+    )
+
+    assets = [str(cfg.MODEL_PATH), str(cfg.TOKENIZER_PATH), str(cfg.CONFIG_PATH)]
+
+    for asset in assets:
+        cmd = f"cp -r {asset} {assets_dir}"
+        system(cmd)
+        print(utils.formatter(f"dumped {asset}", color="g", bold=True, tick=True))
 
 
 @app.command()

@@ -1,20 +1,20 @@
 from setuptools import setup, find_packages
 from pycoder.version import __version__
-from pycoder.production import (
-    MODEL_PATH,
-    TOKENIZER_PATH,
-    PACKAGE_DIR,
-)
+from pathlib import Path
 import sys
+
+PACKAGE_DIR = Path("pycoder").absolute()
+MODEL_PATH = PACKAGE_DIR / "assets" / "model"
+TOKENIZER_PATH = PACKAGE_DIR / "assets" / "tokenizer"
 
 
 if not MODEL_PATH.exists():
-    # develop will be in argv if we do e.g. `pip install -e .`
+    # dev will be in argv if we do e.g. `pip install -e .`
     if "dev" not in sys.argv:
         raise FileNotFoundError(MODEL_PATH)
 
 if not TOKENIZER_PATH.exists():
-    # develop will be in argv if we do e.g. `pip install -e .`
+    # dev will be in argv if we do e.g. `pip install -e .`
     if "dev" not in sys.argv:
         raise FileNotFoundError(TOKENIZER_PATH)
 
