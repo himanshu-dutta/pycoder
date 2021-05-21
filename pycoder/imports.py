@@ -23,7 +23,7 @@ except:
     pass
 
 from tqdm import tqdm
-from typer import Typer, Option, echo
+from typer import Typer, Option, Exit, echo
 
 
 import torch

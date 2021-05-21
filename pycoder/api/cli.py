@@ -1,8 +1,9 @@
 from pycoder.api.main import query
 from pycoder.version import __version__
 from pycoder.imports import (
-    echo,
     List,
+    echo,
+    Exit,
     Typer,
     Option,
     Optional,
@@ -13,6 +14,13 @@ from pycoder.imports import (
 )
 
 app = Typer()
+
+
+def version_callback(value: bool):
+    if value:
+        echo(f"Pycoder 🐍 CLI version: {__version__}")
+        raise Exit()
+
 
 ############################
 #   interface for inference
@@ -38,6 +46,9 @@ def main(
         "--cuda",
         "-c",
         help="if cuda device is to be used for inference or not. Might not work in case VRAM is <4GB.",
+    ),
+    version: Optional[bool] = Option(
+        None, "--version", "-v", callback=version_callback
     ),
 ) -> str:
     """
