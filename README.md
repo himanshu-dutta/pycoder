@@ -5,7 +5,6 @@
 <!-- <img alt="Medium" src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" height=35/> -->
 
 <!-- [![PyPI version fury.io](https://badge.fury.io/py/torchlit.svg)](https://pypi.org/project/torchlit/)  -->
-<br/><br/>
   
 `PyCoder` is a tool to generate python code out of a few given topics and description. It uses GPT-2 language model as its engine. Pycoder poses writing Python code as a conditional-Causal Language Modelling(c-CLM). It has been trained on millions of lines of Python code written by all of us.  At current stage and state of training it produces sensible code with few lines of description, but the scope of improvement for the model is limitless. 
 
