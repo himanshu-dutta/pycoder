@@ -33,7 +33,7 @@ setup(
     url="https://github.com/himanshu-dutta/pycoder",
     license="MIT License",
     install_requires=[
-        "torch",
+        "torch @ https://download.pytorch.org/whl/cpu/torch-1.8.1%2Bcpu-cp38-cp38-linux_x86_64.whl",
         "typer",
         "transformers",
         "Markdown",

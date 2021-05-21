@@ -11,6 +11,7 @@ def create_inference_instance(
     model_path: Union[Path, str] = MODEL_PATH,
     tokenizer_path: Union[Path, str] = TOKENIZER_PATH,
     max_length: int = 200,
+    cuda: bool = False,
     verbose: bool = False,
 ) -> CodeInference:
     CONTROL_TOKENS = {
@@ -25,6 +26,7 @@ def create_inference_instance(
         tokenizer_path,
         CONTROL_TOKENS,
         max_length,
+        cuda,
         verbose,
     )
 
@@ -34,10 +36,11 @@ def query(
     description: str,
     code_prefix: str = "",
     max_length: int = 200,
+    cuda: bool = False,
     verbose: bool = False,
 ) -> str:
 
-    coder = create_inference_instance(max_length=max_length, verbose=verbose)
+    coder = create_inference_instance(max_length=max_length, cuda=cuda, verbose=verbose)
 
     out = coder(topics, description, code_prefix)
 

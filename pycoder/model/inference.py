@@ -9,6 +9,7 @@ class CodeInference:
         tokenizer_path: Union[Path, str],
         control_tokens: dict,
         max_length: int,
+        cuda: bool = False,
         verbose: bool = False,
     ):
         model, tokenizer = load_transformers(model_path, tokenizer_path, verbose)
@@ -19,6 +20,7 @@ class CodeInference:
             model=model,
             tokenizer=tokenizer,
             config={"max_length": max_length},
+            device=0 if cuda else -1,
         )
 
         self.control_tokens = control_tokens

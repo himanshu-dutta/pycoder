@@ -16,7 +16,7 @@ async def load_model_call():
 async def query_code(
     topics: str, description: str, prefix: str = "", max_length: int = 200
 ):
-    result = query(topics, description, prefix, max_length, True)
+    result = query(topics, description, prefix, max_length, verbose=True)
 
     return {"code": result}
 
