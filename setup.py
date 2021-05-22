@@ -31,7 +31,6 @@ setup(
     author="Himanshu Dutta",
     author_email="meet.himanshu.dutta@gmail.com",
     url="https://github.com/himanshu-dutta/pycoder",
-    license="MIT License",
     install_requires=[
         "torch==1.8.1",
         "typer==0.3.2",
@@ -48,7 +47,6 @@ setup(
             "pycoder=pycoder.api.cli:cli",
         ],
     },
-    platforms=["linux", "unix"],
     include_package_data=True,
     package_data={
         "pycoder": [
@@ -57,4 +55,14 @@ setup(
         ]
     },
     python_requires=">3.6.8",
+    license="MIT License",
+    classifiers=[
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    platforms=["linux", "unix"],
 )

@@ -65,10 +65,18 @@ def main(
         help="get execution time of generating the code.",
     ),
     endpoint: Optional[int] = Option(
-        8000, "--endpoint", "-e", callback=endpoint_callback
+        8000,
+        "--endpoint",
+        "-e",
+        callback=endpoint_callback,
+        help="specify the port to start the endpoint on.",
     ),
     version: Optional[bool] = Option(
-        None, "--version", "-v", callback=version_callback
+        None,
+        "--version",
+        "-v",
+        callback=version_callback,
+        help="shows the current version of Pycoder.",
     ),
 ) -> str:
     """
