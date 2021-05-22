@@ -28,6 +28,7 @@ from torch.utils.data import DataLoader, Dataset, random_split
 from transformers import (
     AutoTokenizer,
     AutoConfig,
+    GPT2LMHeadModel,
     AutoModelForPreTraining,
     AdamW,
     TrainingArguments,

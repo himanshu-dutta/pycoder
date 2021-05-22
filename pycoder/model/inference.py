@@ -1,5 +1,6 @@
-from pycoder.imports import pipeline, Union, Path, List
-from pycoder.model.transformer import load_transformers
+from pycoder.utils import formatter
+from pycoder.model.transformer import load_transformers, save_transformers
+from pycoder.imports import pipeline, Union, Path, List, GPT2LMHeadModel, AutoTokenizer
 
 
 class CodeInference:
@@ -12,6 +13,7 @@ class CodeInference:
         cuda: bool = False,
         verbose: bool = False,
     ):
+        check_load_from_model_hub(model_path, tokenizer_path)
         model, tokenizer = load_transformers(model_path, tokenizer_path, verbose)
         model.config.task_specific_params["text-generation"]["max_length"] = max_length
 
@@ -59,3 +61,27 @@ class CodeInference:
         )
 
         return out
+
+
+def check_load_from_model_hub(
+    model_path: Union[Path, str], tokenizer_path: Union[Path, str]
+):
+    from pycoder.config import HF_HUB_NAME
+
+    model_path = Path(model_path)
+    tokenizer_path = Path(tokenizer_path)
+
+    if not model_path.exists() or not tokenizer_path.exists():
+        print(
+            formatter(
+                "Model and Tokenizer being downloaded and saved from ModelHub...",
+                color="g",
+            )
+        )
+
+        model = GPT2LMHeadModel.from_pretrained(HF_HUB_NAME)
+        tokenizer = AutoTokenizer.from_pretrained(HF_HUB_NAME)
+
+        save_transformers(model_path, tokenizer_path, model, tokenizer, verbose=False)
+
+        print(formatter("Model and Tokenizer saved.", color="g", bold=True, tick=True))

@@ -58,6 +58,7 @@ def save_transformers(
     tokenizer_path: Union[Path, str],
     model: "nn.Module",
     tokenizer: "transformer.PreTrainedTokenizer",
+    verbose: bool = True,
 ) -> None:
     model_path, tokenizer_path = Path(model_path), Path(tokenizer_path)
 
@@ -70,14 +71,15 @@ def save_transformers(
     model.save_pretrained(model_path)
     tokenizer.save_pretrained(tokenizer_path)
 
-    print(
-        "Saved the model to ",
-        formatter(str(model_path), color="g", bold=True, tick=True),
-    )
-    print(
-        "Saved the tokenizer to ",
-        formatter(str(tokenizer_path), color="g", bold=True, tick=True),
-    )
+    if verbose:
+        print(
+            "Saved the model to ",
+            formatter(str(model_path), color="g", bold=True, tick=True),
+        )
+        print(
+            "Saved the tokenizer to ",
+            formatter(str(tokenizer_path), color="g", bold=True, tick=True),
+        )
 
 
 def load_transformers(
