@@ -80,14 +80,14 @@ def main(
     ),
 ) -> str:
     """
-    CLI command to get Python 🐍 code from set of topics[multiple] and description.
-    Example:\n
-        pycoder --topic pytorch --description "a trainer for vision"\n
-        pycoder -t pytorch -d "a trainer for vision"\n
-        pycoder --topic pytorch --topic torch --description "a trainer for vision"\n
-        pycoder -t pytorch -t torch -d "a trainer for vision"\n
-        pycoder --topic pytorch --topic torch --description "a trainer for vision" --prefix "class Trainer:"\n
-        pycoder -t pytorch -t torch -d "a trainer for vision" --prefix "class Trainer:"\n
+    CLI command to get Python 🐍 code from set of topic[s] and description.
+    Examples:\n
+    🔥 pycoder --topic pytorch --description "a trainer for vision"\n
+    🔥 pycoder -t pytorch -d "a trainer for vision"\n
+    🔥 pycoder --topic pytorch --topic torch --description "a trainer for vision"\n
+    🔥 pycoder -t pytorch -t torch -d "a trainer for vision"\n
+    🔥 pycoder --topic pytorch --topic torch --description "a trainer for vision" --prefix "class Trainer:"\n
+    🔥 pycoder -t pytorch -t torch -d "a trainer for vision" --prefix "class Trainer:"\n
     """
     st = time()
     with spinner():
