@@ -12,7 +12,7 @@ async def load_model_call():
     )
 
 
-@app.get("/")
+@app.get("/query-code")
 async def query_code(
     topics: str, description: str, prefix: str = "", max_length: int = 200
 ):
