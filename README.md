@@ -1,15 +1,18 @@
 <br />
 <div align="center">
 <img src="https://raw.githubusercontent.com/himanshu-dutta/pycoder/master/docs/pycoder-logo-p.png">
-</div>
+
 
 <br/>
-<img alt="Made With Python" src="http://ForTheBadge.com/images/badges/made-with-python.svg">
+<img alt="Made With Python" src="http://ForTheBadge.com/images/badges/made-with-python.svg" height=28 style="height:28px;" />
 
-<!-- <img alt="Medium" src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" height=35/> -->
+<img alt="Medium" src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" height=28 style="height:28px;"/>
 
-<!-- [![PyPI version fury.io](https://badge.fury.io/py/torchlit.svg)](https://pypi.org/project/torchlit/)  -->
+[![PyPI version fury.io](https://badge.fury.io/py/torchlit.svg)](https://pypi.org/project/pycoder/) 
+</div>
   
+<div align="justify">
+
 `PyCoder` is a tool to generate python code out of a few given topics and a description. It uses GPT-2 language model as its engine. Pycoder poses writing Python code as a conditional-Causal Language Modelling(c-CLM). It has been trained on millions of lines of Python code written by all of us.  At the current stage and state of training, it produces sensible code with few lines of description, but the scope of improvement for the model is limitless. 
 
 Pycoder has been developed as a Command-Line tool (CLI), an API endpoint, as well as a python package (yet to be deployed to PyPI). This repository acts as a framework for anyone who either wants to try to build Pycoder from scratch or turn Pycoder into maybe a `CPPCoder` or `JSCoder` 😃.  A blog post about the development of the project will be released soon.
@@ -35,7 +38,7 @@ Or
 ```console
 foo@bar:❯ pycoder -e PORT_NUMBER
 ```
-
+</div>
 
 ## Tech Stack
 <div align="center">
