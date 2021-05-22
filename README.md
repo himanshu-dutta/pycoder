@@ -19,23 +19,29 @@ Pycoder has been developed as a Command-Line tool (CLI), an API endpoint, as wel
 
 To use `Pycoder` as a CLI utility, clone the repository as normal, and install the package with:
 ```console
-foo@bar:❯ python setup.py install
+foo@bar:❯ pip install pycoder
 ```
 After this the package could be verified and accessed as either a native CLI tool or a python package with:
 ```console
 foo@bar:❯ python -m pycoder --version
-```
+
 Or directly as:
-```console
+
 foo@bar:❯ pycoder --version
+```
+
+On installation the CLI can be used directly, such as:
+
+```console
+foo@bar:❯ pycoder -t pytorch -t torch -d "a trainer class to train vision model" -ml 120
 ```
 
 The API endpoint is deployed using FastAPI. Once all the requirements have been installed for the project, the API can be accessed with:
 ```console
 foo@bar:❯ pycoder --endpoint PORT_NUMBER
-```
+
 Or
-```console
+
 foo@bar:❯ pycoder -e PORT_NUMBER
 ```
 </div>
