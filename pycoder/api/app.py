@@ -1,5 +1,14 @@
 from pycoder.api.main import query
-from pycoder.imports import FastAPI, create_task, run
+from pycoder.imports import (
+    run,
+    Path,
+    FastAPI,
+    highlight,
+    PythonLexer,
+    create_task,
+    HTMLResponse,
+    HtmlFormatter,
+)
 
 app = FastAPI()
 
@@ -16,15 +25,30 @@ async def load_model_call():
 async def query_code(
     topics: str, description: str, prefix: str = "", max_length: int = 200
 ):
-    result = query(topics, description, prefix, max_length, verbose=True)
-
-    return {"code": result}
+    code = query(topics, description, prefix, max_length, verbose=True)
+    code = highlight(code, PythonLexer(), HtmlFormatter())
+    return {"code": code}
 
 
 @app.get("/load-model")
 async def load_model():
     create_task(load_model_call())
     return {"status": "loading model..."}
+
+
+@app.get("/", response_class=HTMLResponse)
+async def home():
+    create_task(load_model_call())
+
+    HOME_HTML = Path(__file__).parent.absolute() / "index.html"
+    print(HOME_HTML)
+
+    if HOME_HTML.exists():
+        with HOME_HTML.open() as f:
+            body = f.read()
+    else:
+        body = "not found :("
+    return body
 
 
 def main():

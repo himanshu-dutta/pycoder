@@ -50,10 +50,11 @@ from uvicorn import run
 from fastapi import FastAPI
 from asyncio import create_task
 from click_spinner import spinner
+from fastapi.responses import HTMLResponse
 
 from pygments import highlight
 from pygments.lexers import PythonLexer
-from pygments.formatters import TerminalFormatter
+from pygments.formatters import TerminalFormatter, HtmlFormatter
 
 
 ######################

@@ -1,8 +1,12 @@
 from setuptools import setup, find_packages
 from pycoder.version import __version__
 from pathlib import Path
-import sys
 
+PACKAGE_DIR = Path("pycoder").absolute()
+HTML_PATH = PACKAGE_DIR / "api" / "index.html"
+
+if not HTML_PATH.exists():
+    raise FileNotFoundError(HTML_PATH)
 
 with open("README.md") as f:
     long_description = f.read()
@@ -32,6 +36,12 @@ setup(
         "console_scripts": [
             "pycoder=pycoder.api.cli:cli",
         ],
+    },
+    include_package_data=True,
+    package_data={
+        "pycoder": [
+            str(HTML_PATH.relative_to(PACKAGE_DIR)),
+        ]
     },
     python_requires=">3.7",
     license="MIT License",
