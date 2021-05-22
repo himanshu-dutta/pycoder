@@ -4,9 +4,9 @@
 
 
 <br/>
-<img alt="Made With Python" src="http://ForTheBadge.com/images/badges/made-with-python.svg" height=28 style="height:28px;" />
+<img alt="Made With Python" src="http://ForTheBadge.com/images/badges/made-with-python.svg" height=28 style="display:inline; height:28px;" />
 
-<img alt="Medium" src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" height=28 style="height:28px;"/>
+<img alt="Medium" src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" height=28 style="display:inline; height:28px;"/>
 
 [![PyPI version fury.io](https://badge.fury.io/py/pycoder.svg)](https://pypi.org/project/pycoder/) 
 </div>
