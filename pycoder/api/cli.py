@@ -30,12 +30,12 @@ def version_callback(value: bool):
 ############################
 
 
-def endpoint_callback(port: int = 800):
+def endpoint_callback(value: bool):
+    if value:
+        from pycoder.api.app import main
 
-    from pycoder.api.app import main
-
-    main(port)
-    raise Exit()
+        main()
+        raise Exit()
 
 
 @app.command()
@@ -64,8 +64,8 @@ def main(
         "-et",
         help="get execution time of generating the code.",
     ),
-    endpoint: Optional[int] = Option(
-        8000,
+    endpoint: Optional[bool] = Option(
+        None,
         "--endpoint",
         "-e",
         callback=endpoint_callback,

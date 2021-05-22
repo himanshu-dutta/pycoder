@@ -47,13 +47,6 @@ setup(
             "pycoder=pycoder.api.cli:cli",
         ],
     },
-    include_package_data=True,
-    package_data={
-        "pycoder": [
-            str(MODEL_PATH.relative_to(PACKAGE_DIR) / "*"),
-            str(TOKENIZER_PATH.relative_to(PACKAGE_DIR) / "*"),
-        ]
-    },
     python_requires=">3.6.8",
     license="MIT License",
     classifiers=[

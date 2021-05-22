@@ -74,7 +74,7 @@ def check_load_from_model_hub(
     if not model_path.exists() or not tokenizer_path.exists():
         print(
             formatter(
-                "Model and Tokenizer being downloaded and saved from ModelHub...",
+                "Model and Tokenizer being downloaded and saved from ModelHub (once only)...",
                 color="g",
             )
         )

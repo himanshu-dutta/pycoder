@@ -27,5 +27,5 @@ async def load_model():
     return {"status": "loading model..."}
 
 
-def main(port):
-    run(app, host="127.0.0.1", port=port, log_level="info")
+def main():
+    run(app, host="127.0.0.1", log_level="info")
