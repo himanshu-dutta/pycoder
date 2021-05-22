@@ -1,6 +1,6 @@
 <br />
 <div align="center">
-<img src="https://raw.githubusercontent.com/himanshu-dutta/pycoder/master//docs/pycoder-logo-p.png">
+<img src="https://raw.githubusercontent.com/himanshu-dutta/pycoder/master/docs/pycoder-logo-p.png">
 </div>
 
 <br/>
