@@ -97,7 +97,8 @@ def check_load_from_model_hub(
         save_transformers(model_path, tokenizer_path, model, tokenizer, verbose=False)
 
         print(
-            formatter("\nModel and Tokenizer saved.\n", color="g", bold=True, tick=True)
+            formatter("\nModel and Tokenizer saved.", color="g", bold=True, tick=True)
+            + "\n"
         )
 
         rmtree(CACHE_DIR)
