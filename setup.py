@@ -47,10 +47,9 @@ setup(
             "pycoder=pycoder.api.cli:cli",
         ],
     },
-    python_requires=">3.6.8",
+    python_requires=">3.7",
     license="MIT License",
     classifiers=[
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
