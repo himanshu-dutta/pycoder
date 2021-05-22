@@ -8,7 +8,7 @@
 
 <img alt="Medium" src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" height=28 style="height:28px;"/>
 
-[![PyPI version fury.io](https://badge.fury.io/py/torchlit.svg)](https://pypi.org/project/pycoder/) 
+[![PyPI version fury.io](https://badge.fury.io/py/pycoder.svg)](https://pypi.org/project/pycoder/) 
 </div>
   
 <div align="justify">
