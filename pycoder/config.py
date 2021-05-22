@@ -62,6 +62,8 @@ RUN_NAME = f"RUN:{(__version__.split('.'))[-1]}"
 PACKAGE_DIR = Path(__file__).parent.absolute()
 ARTIFACT_PATH = PACKAGE_DIR / "artifacts"
 
+CACHE_DIR = PACKAGE_DIR / "cache"
+
 ASSETS_DIR = PACKAGE_DIR / "assets"
 CONFIG_PATH = Path(__file__)
 

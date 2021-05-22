@@ -1,6 +1,14 @@
 from pycoder.utils import formatter
 from pycoder.model.transformer import load_transformers, save_transformers
-from pycoder.imports import pipeline, Union, Path, List, GPT2LMHeadModel, AutoTokenizer
+from pycoder.imports import (
+    pipeline,
+    Union,
+    Path,
+    List,
+    GPT2LMHeadModel,
+    AutoTokenizer,
+    rmtree,
+)
 
 
 class CodeInference:
@@ -66,7 +74,7 @@ class CodeInference:
 def check_load_from_model_hub(
     model_path: Union[Path, str], tokenizer_path: Union[Path, str]
 ):
-    from pycoder.config import HF_HUB_NAME
+    from pycoder.config import HF_HUB_NAME, CACHE_DIR
 
     model_path = Path(model_path)
     tokenizer_path = Path(tokenizer_path)
@@ -79,9 +87,15 @@ def check_load_from_model_hub(
             )
         )
 
-        model = GPT2LMHeadModel.from_pretrained(HF_HUB_NAME)
-        tokenizer = AutoTokenizer.from_pretrained(HF_HUB_NAME)
+        model = GPT2LMHeadModel.from_pretrained(
+            HF_HUB_NAME, cache_dir=CACHE_DIR / "tokenizer"
+        )
+        tokenizer = AutoTokenizer.from_pretrained(
+            HF_HUB_NAME, cache_dir=CACHE_DIR / "model"
+        )
 
         save_transformers(model_path, tokenizer_path, model, tokenizer, verbose=False)
 
         print(formatter("Model and Tokenizer saved.", color="g", bold=True, tick=True))
+
+        rmtree(CACHE_DIR)
