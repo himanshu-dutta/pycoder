@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+            crossorigin="anonymous"
+        />
+
+        <title>Pycoder</title>
+        <style>
+            html {
+                height: 75%;
+            }
+
+            body {
+                height: 90%;
+            }
+
+            input {
+                width: 80%;
+                background-color: #9aadbf;
+                border-width: 0;
+                color: white;
+            }
+            ::placeholder {
+                /* Chrome, Firefox, Opera, Safari 10.1+ */
+                color: white;
+                opacity: 1; /* Firefox */
+            }
+        </style>
+    </head>
+    <body>
+        <nav
+            class="navbar navbar-expand-sm navbar-dark flex-column"
+            style="background-color: #6d98ba"
+        >
+            <!-- Brand/logo -->
+            <a class="navbar-brand" href="#"
+                ><img
+                    src="https://raw.githubusercontent.com/himanshu-dutta/pycoder/master/docs/pycoder-logo-s.png"
+            /></a>
+        </nav>
+        <br />
+        <div
+            style="
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                height: 100%;
+            "
+        >
+            <div
+                style="
+                    height: 100%;
+                    border: 1px solid black;
+                    width: 85%;
+                    border-radius: 5px;
+                    display: flex;
+                    justify-content: space-evenly;
+                    background-color: #797cca;
+                "
+            >
+                <div
+                    style="
+                        width: 30%;
+                        background-color: #abbde0;
+                        border: 1px solid black;
+                        border-radius: 5px;
+                        margin: 5px 5px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                    "
+                >
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="topics"
+                            placeholder="Topics"
+                        />
+                        <small class="form-text text-muted"
+                            >Put topics separated by commas(,)</small
+                        >
+                    </div>
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="description"
+                            placeholder="Description"
+                            style="height: 250%"
+                        />
+                    </div>
+                    <br />
+                    <br />
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="prefix"
+                            placeholder="Prefix"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="max-length"
+                            placeholder="Max Length"
+                        />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="generate">
+                        Generate
+                    </button>
+                </div>
+                <div
+                    style="
+                        width: 70%;
+                        background-color: #abbde0;
+                        border: 1px solid black;
+                        border-radius: 5px;
+                        margin: 5px 5px;
+                        padding: 20px;
+                        overflow: scroll;
+                        display: flex;
+                        flex-direction: column;
+                        justify-self: center;
+                        align-items: center;
+                    "
+                >
+                    <div
+                        class="spinner-border"
+                        role="status"
+                        id="spinner"
+                        style="display: none"
+                    >
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div id="code-window"></div>
+                </div>
+                <div></div>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        var generate = document.querySelector("#generate");
+        generate.addEventListener("click", () => {
+            var topics = document.querySelector("#topics");
+            var description = document.querySelector("#description");
+            var prefix = document.querySelector("#prefix");
+            var maxLength = document.querySelector("#max-length");
+            var codeWindow = document.querySelector("#code-window");
+
+            var spinner = document.querySelector("#spinner");
+            spinner.style.display = "block";
+
+            let query = "/query-code?";
+            if (topics !== "") {
+                query += `topics=${topics.value.replaceAll(/\s/g, "")}`;
+            }
+            if (description !== "") {
+                query += `&description=${description.value}`;
+            }
+            if (prefix !== "") {
+                query += `&prefix=${prefix.value}`;
+            }
+            if (maxLength !== "") {
+                query += `&maxLength=${maxLength.value}`;
+            }
+            fetch(query)
+                .then((response) => response.json())
+                .then((response) => {
+                    spinner.style.display = "none";
+                    codeWindow.innerHTML = response.code;
+                })
+                .catch((err) => (spinner.style.display = "none"));
+        });
+    </script>
+</html>

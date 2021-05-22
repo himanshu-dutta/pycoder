@@ -21,6 +21,8 @@ sacremoses==0.0.45
 six==1.16.0
 starlette==0.14.2
 tokenizers==0.10.2
+-f https://download.pytorch.org/whl/torch_stable.html
+torch==1.8.1+cpu
 tqdm==4.60.0
 transformers==4.6.1
 typer==0.3.2
