@@ -1,5 +1,9 @@
-# PyCoder 🐍
+<br />
+<div align="center">
+<img src="https://raw.githubusercontent.com/himanshu-dutta/pycoder/master//docs/pycoder-logo-p.png">
+</div>
 
+<br/>
 <img alt="Made With Python" src="http://ForTheBadge.com/images/badges/made-with-python.svg">
 
 <!-- <img alt="Medium" src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" height=35/> -->
@@ -34,20 +38,20 @@ foo@bar:❯ pycoder -e PORT_NUMBER
 
 
 ## Tech Stack
-<p align="center">
+<div align="center">
 <img alt="Python" src="https://img.shields.io/badge/python-%2314354C.svg?style=for-the-badge&logo=python&logoColor=white" style="display:inline;" />
 <img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white" style="display:inline;" />
 <img alt="Transformers" src="https://raw.githubusercontent.com/huggingface/transformers/master/docs/source/imgs/transformers_logo_name.png" height=28 width=120 style="display:inline; background-color:white; height:28px; width:120px"/>
 <img alt="Docker" src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" style="display:inline;" />
 <img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" alt="FastAPI" height=28 style="display:inline; background-color:black; height:28px;" /> 
 <img src="https://typer.tiangolo.com/img/logo-margin/logo-margin-vector.svg" height=28 style="display:inline; background-color:teal; height:28px;" />
-</p>
+</div>
 
 ## Tested Platforms
-<p align="center">
+<div align="center">
 <img alt="Linux" src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" style="display:inline;" />
 <img alt="Windows 10" src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" style="display:inline;" />
-</p>
+</div>
 
 
 ## BibTeX
@@ -63,7 +67,7 @@ If you want to cite the framework feel free to use this:
 ```
 <hr />
 
-<p align="center">
+<div align="center">
 <img alt="MIT License" src="https://img.shields.io/github/license/himanshu-dutta/pycoder?style=for-the-badge&logo=appveyor" style="display:inline;" /> 
 <img src="https://img.shields.io/badge/Copyright-Himanshu_Dutta-2ea44f?style=for-the-badge&logo=appveyor" style="display:inline;" />
-</p>
+</div>
