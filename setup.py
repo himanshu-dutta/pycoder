@@ -3,20 +3,6 @@ from pycoder.version import __version__
 from pathlib import Path
 import sys
 
-# PACKAGE_DIR = Path("pycoder").absolute()
-# MODEL_PATH = PACKAGE_DIR / "assets" / "model"
-# TOKENIZER_PATH = PACKAGE_DIR / "assets" / "tokenizer"
-
-
-# if not MODEL_PATH.exists():
-#     # dev will be in argv if we do e.g. `pip install -e .`
-#     if "dev" not in sys.argv:
-#         raise FileNotFoundError(MODEL_PATH)
-
-# if not TOKENIZER_PATH.exists():
-#     # dev will be in argv if we do e.g. `pip install -e .`
-#     if "dev" not in sys.argv:
-#         raise FileNotFoundError(TOKENIZER_PATH)
 
 with open("README.md") as f:
     long_description = f.read()

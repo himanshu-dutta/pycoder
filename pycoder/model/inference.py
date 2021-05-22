@@ -82,7 +82,7 @@ def check_load_from_model_hub(
     if not model_path.exists() or not tokenizer_path.exists():
         print(
             formatter(
-                "Model and Tokenizer being downloaded and saved from ModelHub (once only)...",
+                "\nModel and Tokenizer being downloaded and saved from ModelHub (once only)...\n",
                 color="g",
             )
         )
@@ -96,6 +96,8 @@ def check_load_from_model_hub(
 
         save_transformers(model_path, tokenizer_path, model, tokenizer, verbose=False)
 
-        print(formatter("Model and Tokenizer saved.", color="g", bold=True, tick=True))
+        print(
+            formatter("\nModel and Tokenizer saved.\n", color="g", bold=True, tick=True)
+        )
 
         rmtree(CACHE_DIR)
