@@ -8,6 +8,10 @@
 
 <img alt="Medium" src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" height=28 style="display:inline; height:28px;"/>
 
+<a href="https://wandb.ai/himanshu-dutta/pycoder">
+<img alt="WandB Dashboard" src="https://raw.githubusercontent.com/wandb/assets/04cfa58cc59fb7807e0423187a18db0c7430bab5/wandb-github-badge-28.svg" height=28 style="display:inline; height:28px;" />
+</a>
+
 [![PyPI version fury.io](https://badge.fury.io/py/pycoder.svg)](https://pypi.org/project/pycoder/) 
 </div>
   

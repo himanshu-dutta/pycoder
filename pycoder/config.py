@@ -47,7 +47,7 @@ CONTROL_TOKENS = {
 }
 
 # training parameters
-EPOCHS = 5
+EPOCHS = 10
 TRAIN_BATCHSIZE = 1
 BATCH_UPDATE = 16
 LR = 5e-4
@@ -55,7 +55,7 @@ EPS = 1e-8
 WARMUP_STEPS = 1e2
 APEX_OPT_LEVEL = "01"
 FP16 = True
-VAL_PCT = 0.2
+VAL_PCT = 0.1
 RUN_NAME = f"RUN:{(__version__.split('.'))[-1]}"
 
 # paths and directories
