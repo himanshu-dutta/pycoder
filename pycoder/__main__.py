@@ -17,21 +17,21 @@ def download_github_repositories(
     save_path: str = cfg.REPO_JSON_PATH,
     github_accesss_token: str = cfg.GITHUB_ACCESS_TOKEN,
     keywords: List[str] = cfg.KEYWORDS,
-):
+) -> None:
     download.download_github_repositories(save_path, github_accesss_token, keywords)
 
 
 @app.command()
 def clone_repositories(
     json_path: str = cfg.REPO_JSON_PATH, save_path: str = cfg.REPO_DATA_PATH
-):
+) -> None:
     download.clone_repositories(json_path, save_path)
 
 
 @app.command()
 def index_repositories(
     json_path: str = cfg.REPO_JSON_PATH, save_path: str = cfg.REPO_INDEX_JSON_PATH
-):
+) -> None:
     processing.index_repositories(json_path, save_path)
 
 
@@ -39,7 +39,7 @@ def index_repositories(
 def clean_repositories(
     root_dir: str = cfg.REPO_DATA_PATH,
     must_remove_phrases: List[str] = cfg.GITIGNORES,
-):
+) -> None:
     processing.walk_clean(root_dir, must_remove_phrases)
 
 
@@ -50,7 +50,7 @@ def index_files(
     readme_save_path: str = cfg.README_DATA_PATH,
     repository_index: str = cfg.REPO_INDEX_JSON_PATH,
     keywords: List[str] = cfg.KEYWORDS,
-):
+) -> None:
     processing.index_files_from_root(
         root_dir,
         save_path,
@@ -70,7 +70,7 @@ def get_data(
     repository_index_json_path: str = cfg.REPO_INDEX_JSON_PATH,
     file_index_json_path: str = cfg.FILE_INDEX_JSON_PATH,
     readme_save_path: str = cfg.README_DATA_PATH,
-):
+) -> None:
     # download github repository data to a json file
     download.download_github_repositories(
         repository_json_path,
@@ -106,7 +106,7 @@ def get_data(
 
 
 @app.command()
-def run_training(checkpoint_dir: str = None):
+def run_training(checkpoint_dir: str = None) -> None:
     training.run_training(cfg, checkpoint_dir)
 
 
@@ -116,7 +116,7 @@ def run_training(checkpoint_dir: str = None):
 
 
 @app.command()
-def dump_assets(assets_dir: str = None, cfg=cfg):
+def dump_assets(assets_dir: str = None, cfg=cfg) -> None:
     if assets_dir == None:
         assert cfg.ASSETS_DIR != None, "assets_dir / cfg.ASSETS_DIR is required."
         assets_dir = str(cfg.ASSETS_DIR)
@@ -136,7 +136,7 @@ def dump_assets(assets_dir: str = None, cfg=cfg):
 
 
 @app.command()
-def update_version():
+def update_version() -> None:
     utils.update_version()
 
 

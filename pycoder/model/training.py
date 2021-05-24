@@ -6,7 +6,7 @@ from pycoder.imports import random_split, Path, Union
 from pycoder.model.transformer import get_tokenier, get_model, save_transformers
 
 
-def run_training(cfg, checkpoint_path: Union[Path, str] = None):
+def run_training(cfg, checkpoint_path: Union[Path, str] = None) -> None:
     codes = Code.load_from_json(cfg.FILE_INDEX_JSON_PATH)
     print(
         f"loaded {len(codes)} code instances from",

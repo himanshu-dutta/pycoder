@@ -13,15 +13,14 @@ from pycoder.imports import (
     highlight,
     PythonLexer,
     TerminalFormatter,
-    system,
 )
 
 app = Typer()
 
 
-def version_callback(value: bool):
+def version_callback(value: bool) -> None:
     if value:
-        echo(f"Pycoder 🐍 CLI version: {__version__}")
+        echo(f"Pycoder  🐍  CLI version: {__version__}")
         raise Exit()
 
 
@@ -30,7 +29,7 @@ def version_callback(value: bool):
 ############################
 
 
-def endpoint_callback(value: bool):
+def endpoint_callback(value: bool) -> None:
     if value:
         from pycoder.api.app import main
 
@@ -78,16 +77,16 @@ def main(
         callback=version_callback,
         help="shows the current version of Pycoder.",
     ),
-) -> str:
+) -> None:
     """
-    CLI command to get Python 🐍 code from set of topic[s] and description.
+    CLI command to get Python  🐍  code from set of topic[s] and description.
     Examples:\n
-    🔥 pycoder --topic pytorch --description "a trainer for vision"\n
-    🔥 pycoder -t pytorch -d "a trainer for vision"\n
-    🔥 pycoder --topic pytorch --topic torch --description "a trainer for vision"\n
-    🔥 pycoder -t pytorch -t torch -d "a trainer for vision"\n
-    🔥 pycoder --topic pytorch --topic torch --description "a trainer for vision" --prefix "class Trainer:"\n
-    🔥 pycoder -t pytorch -t torch -d "a trainer for vision" --prefix "class Trainer:"\n
+    🔥  pycoder --topic pytorch --description "a trainer for vision"\n
+    🔥  pycoder -t pytorch -d "a trainer for vision"\n
+    🔥  pycoder --topic pytorch --topic torch --description "a trainer for vision"\n
+    🔥  pycoder -t pytorch -t torch -d "a trainer for vision"\n
+    🔥  pycoder --topic pytorch --topic torch --description "a trainer for vision" --prefix "class Trainer:"\n
+    🔥  pycoder -t pytorch -t torch -d "a trainer for vision" --prefix "class Trainer:"\n
     """
     st = time()
     with spinner():
@@ -100,5 +99,5 @@ def main(
         echo(formatter(f"took {(et-st):.2f} seconds to code 😀", color="g", bold=True))
 
 
-def cli():
+def cli() -> None:
     app()

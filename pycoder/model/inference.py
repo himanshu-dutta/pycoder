@@ -20,7 +20,7 @@ class CodeInference:
         max_length: int,
         cuda: bool = False,
         verbose: bool = False,
-    ):
+    ) -> None:
         check_load_from_model_hub(model_path, tokenizer_path)
         model, tokenizer = load_transformers(model_path, tokenizer_path, verbose)
         model.config.task_specific_params["text-generation"]["max_length"] = max_length
@@ -37,7 +37,7 @@ class CodeInference:
 
     def __call__(
         self, topics: Union[List[str], str], description: str, code_prefix: str = ""
-    ):
+    ) -> List[str]:
         """
         sends in input:
         <|TOP|>TOPICS<|DES|>DESCRIPTION<|CODE|>
@@ -73,7 +73,7 @@ class CodeInference:
 
 def check_load_from_model_hub(
     model_path: Union[Path, str], tokenizer_path: Union[Path, str]
-):
+) -> None:
     from pycoder.config import HF_HUB_NAME, CACHE_DIR
 
     model_path = Path(model_path)

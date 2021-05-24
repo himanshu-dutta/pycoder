@@ -9,7 +9,7 @@ class Code:
     topics: List[str] = field(default_factory=list)
     language: str = "Python"
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self._readme = None
         self._content = None
 

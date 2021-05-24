@@ -169,13 +169,13 @@ class unmark:
     source: https://stackoverflow.com/a/54923798
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         Markdown.output_formats["plain"] = self.unmark_element
         self.__md = Markdown(output_format="plain")
         self.__md.stripTopLevelTags = False
 
     @classmethod
-    def unmark_element(cls, element, stream=None):
+    def unmark_element(cls, element, stream=None) -> str:
         if stream is None:
             stream = StringIO()
         if element.text:
@@ -186,7 +186,7 @@ class unmark:
             stream.write(element.tail)
         return stream.getvalue()
 
-    def __call__(self, text):
+    def __call__(self, text) -> str:
         return self.__md.convert(text)
 
 

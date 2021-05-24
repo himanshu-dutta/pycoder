@@ -27,7 +27,7 @@ def formatter(
     return color + bold + st + END
 
 
-def update_version():
+def update_version() -> None:
     version = input("Enter version number: ")
     assert (
         len(version.split(".")) == 3
