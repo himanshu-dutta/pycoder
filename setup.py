@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from pycoder.version import __version__
 from pathlib import Path
 
-PACKAGE_DIR = Path("pycoder").absolute()
+PACKAGE_DIR = (Path(__file__).parent / "pycoder").absolute()
 HTML_PATH = PACKAGE_DIR / "api" / "index.html"
 
 if not HTML_PATH.exists():
