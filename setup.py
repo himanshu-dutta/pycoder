@@ -22,7 +22,7 @@ setup(
     author_email="meet.himanshu.dutta@gmail.com",
     url="https://github.com/himanshu-dutta/pycoder",
     install_requires=[
-        "torch==1.8.1",
+        "torch>=1.8.1",
         "typer==0.3.2",
         "transformers==4.6.1",
         "markdown==3.3.4",
